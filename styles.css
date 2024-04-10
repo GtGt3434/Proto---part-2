@@ -317,3 +317,158 @@ footer {
     margin-bottom: 1rem;
     /* Adjust bottom margin for spacing */
 }
+
+/* Existing CSS for Global Styles, Navbar, Swiper, Hero Text, Button, Card, and Footer */
+
+/* Who We Are Section Styles */
+.who-we-are {
+    margin-top: 60px;
+    /* Adds space above the Who We Are section */
+    padding: 100px 20px;
+    /* Increased top and bottom padding */
+    background-image: url('https://source.unsplash.com/random/1920x1080?community');
+    background-size: 120%;
+    /* Increases the zoom level of the background image */
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    /* Larger border-radius for more rounded corners */
+}
+
+.who-we-are .container {
+    position: relative;
+    z-index: 2;
+    border-radius: 20px;
+}
+
+.who-we-are h2 {
+    font-size: 2.5rem;
+    /* Prominent heading size */
+    margin-bottom: 20px;
+    /* Spacing between heading and paragraph */
+}
+
+.who-we-are::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    /* Slightly lighter overlay for better contrast */
+    z-index: 1;
+}
+
+.who-we-are .content-box {
+    display: inline-block;
+    padding: 40px;
+    /* Padding inside the content box */
+    margin: 0 10px;
+    /* Space around the content box */
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background for content */
+    border-radius: 8px;
+    max-width: 600px;
+    /* To ensure the content box doesn't stretch too wide */
+}
+
+.who-we-are h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    /* Increased space below the heading */
+}
+
+.who-we-are p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    /* Increased space below the paragraph */
+}
+
+.btn {
+    padding: 12px 30px;
+    /* Larger button padding */
+    font-size: 1.1rem;
+    /* Larger font size for button text */
+    margin-top: 1px;
+    /* Space above the button */
+    display: inline-block;
+    /* Ensures the button respects margin and padding */
+}
+
+/* Enhanced Social Icons Styles */
+.social-icons a {
+    color: #fff;
+    /* White icons for contrast against footer */
+    padding: 10px;
+    /* Uniform padding around icons */
+    border-radius: 50%;
+    /* Circular shape for icons */
+    margin: 0 5px;
+    /* Spacing between icons */
+    transition: background-color 0.3s;
+    /* Smooth background color transition on hover */
+}
+
+.social-icons a:hover {
+    background-color: #007bff;
+    /* Highlight color on hover */
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translate3d(0, 40px, 0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutDown {
+    from {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate3d(0, 40px, 0);
+        opacity: 0;
+    }
+}
+
+.who-we-are .content-box {
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+/* JavaScript-controlled classes */
+.hidden {
+    visibility: hidden;
+    animation-name: fadeOutDown;
+}
+
+.visible {
+    visibility: visible;
+    animation-name: fadeInUp;
+}
+
+/* Responsive styles for Who We Are Section */
+@media screen and (max-width: 768px) {
+    .who-we-are h2 {
+        font-size: 2rem;
+        /* Slightly smaller font size in mobile view */
+    }
+
+    .who-we-are p {
+        font-size: 1rem;
+        /* Adjust paragraph font size for smaller screens */
+    }
+}
