@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Charity Platform - Home</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="logo">Charity Platform</a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="donation.html"><i class="fa fa-hand-holding-heart"></i> Donate</a></li>
+                    <li><a href="assistance.html"><i class="fa fa-hands-helping"></i> Request Assistance</a></li>
+                    <li><a href="volunteer.html"><i class="fa fa-users"></i> Volunteer</a></li>
+                    <li><a href="profile.html"><i class="fa fa-user-circle"></i> Profile</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Login</a></li>
+                </ul>
+
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- Hero Section with Swiper Carousel -->
+        <section class="hero swiper-container">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide"
+                    style="background-image:url('https://source.unsplash.com/random/1920x1080?nature');">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-text">
+                        <h1>Welcome to Our Charity Platform</h1>
+                        <p>Join us in making a difference</p>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide"
+                    style="background-image:url('https://source.unsplash.com/random/1920x1080?charity');">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-text">
+                        <h1>Donate to a Cause</h1>
+                        <p>Every contribution counts</p>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide"
+                    style="background-image:url('https://source.unsplash.com/random/1920x1080?volunteer');">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-text">
+                        <h1>Volunteer with Us</h1>
+                        <p>Be the change you wish to see</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </section>
+
+        <!-- Cards Section -->
+        <section class="how-to-help">
+            <h2>How You Can Help</h2>
+            <div class="card-container">
+                <!-- Card for Donations -->
+                <div class="card">
+                    <img src="https://stamps.org/portals/0/assets/images/support/donate.jpg" alt="Donate">
+                    <div class="card-content">
+                        <h3 class="card-title">Donate</h3>
+                        <p class="card-text">Support a cause you're passionate about.</p>
+                        <a href="donation.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <!-- Card for Assistance -->
+                <div class="card">
+                    <img src="https://t4.ftcdn.net/jpg/03/09/57/65/360_F_309576547_Jxmy5JOuRH3fbmaximA6wERriBEqxPW7.jpg"
+                        alt="Assistance">
+                    <div class="card-content">
+                        <h3 class="card-title">Request Assistance</h3>
+                        <p class="card-text">Find help for yourself or someone in need.</p>
+                        <a href="assistance.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <!-- Card for Volunteering -->
+                <div class="card">
+                    <img src="https://media.istockphoto.com/id/1303107115/photo/volunteers-standing-hands.jpg?s=612x612&w=0&k=20&c=V10cwe1VPSQifCyGlIwTNTaSkfHY6rP3jsAnQbijD7o="
+                        alt="Volunteer">
+                    <div class="card-content">
+                        <h3 class="card-title">Volunteer</h3>
+                        <p class="card-text">Join our community of volunteers.</p>
+                        <a href="volunteer.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="video-section">
+            <h2>See Our Impact</h2>
+            <div class="video-container">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/CiFoHm7HD94"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Charity Platform. All rights reserved.</p>
+            <div class="social-icons">
+                <!-- Add social media icons here -->
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+
+        // Toggle Menu Function
+        function toggleMenu() {
+            var nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

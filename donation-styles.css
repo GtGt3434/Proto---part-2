@@ -1,0 +1,156 @@
+/* General Body Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f0f0f0; /* Adds a light background for contrast */
+}
+
+/* Header Styles */
+.navbar {
+    background-color: #005f73;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 12px;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    background-color: #e9d8a6;
+    color: #000;
+    border-radius: 5px;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* Donation Cards Styles */
+.donation-cards {
+    padding: 40px 5%; /* Increase padding for more space */
+    background-color: #ffffff; /* Adds a white background to the slider area */
+    border-radius: 10px; /* Rounds the corners of the slider background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+    margin-top: 20px; /* Adds space between the navbar and the slider */
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Makes the shadow more pronounced */
+    margin: 10px; /* Reduces margin for tighter card layout */
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out; /* Slows down the hover effect for smoothness */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Changes hover effect to a subtle rise */
+}
+
+.card-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 200px;
+}
+
+.card-content {
+    padding: 20px; /* Increases padding for more space inside the card */
+}
+
+.card-title {
+    font-size: 1.4rem; /* Increases title size for emphasis */
+    font-weight: bold;
+    color: #005f73; /* Changes title color to match the navbar */
+    margin: 10px 0;
+}
+
+.card-text {
+    font-size: 1rem;
+    line-height: 1.6; /* Increases line height for better readability */
+    color: #666;
+    margin-bottom: 15px; /* Adds space above the button */
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px; /* Increases button size for better clickability */
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold; /* Makes button text bold */
+    transition: background-color 0.2s; /* Smoothens the hover effect */
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Footer Styles */
+.footer-content {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav-links li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .nav-links a {
+        display: block;
+        text-align: center;
+    }
+
+    .card {
+        margin: 20px auto;
+        width: 90%;
+    }
+
+    .donation-cards {
+        padding: 20px 10px; /* Adjusts padding for mobile */
+    }
+
+    .swiper-container {
+        overflow: visible; /* Ensures shadows are not cut off in mobile view */
+    }
+}

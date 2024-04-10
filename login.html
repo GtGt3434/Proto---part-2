@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Charity Platform - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login-styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="logo">Charity Platform</a>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="donation.html"><i class="fa fa-hand-holding-heart"></i> Donate</a></li>
+                    <li><a href="assistance.html"><i class="fa fa-hands-helping"></i> Request Assistance</a></li>
+                    <li><a href="volunteer.html"><i class="fa fa-users"></i> Volunteer</a></li>
+                    <li><a href="profile.html"><i class="fa fa-user-circle"></i> Profile</a></li>
+                    <li><a href="login.html" class="active"><i class="fa fa-sign-in-alt"></i> Login</a></li>
+                </ul>
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="login-page" id="main-container">
+        <section class="login-form login-container" id="login-form">
+            <h2>Login</h2>
+            <form action="login.php" method="POST">
+                <div class="input-container">
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="input-container">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p><a href="forgot_password.html">Forgot Password?</a></p>
+            <p id="signup-link">Don't have an account? <a href="#" onclick="toggleForm()">Create New Account</a></p>
+            <div class="social-login">
+                <button class="facebook-login" onclick="showFacebookForm()"><i class="fa fa-facebook"></i> Login with
+                    Facebook</button>
+                <button class="google-login" onclick="showGoogleForm()"><i class="fa fa-envelope"></i> Login with
+                    Gmail</button>
+            </div>
+        </section>
+        <section class="login-form login-container facebook-form" id="facebook-form" style="display: none;">
+            <h2><i class="fa fa-facebook"></i> Facebook Login</h2>
+            <div class="input-container">
+                <input type="text" placeholder="Email">
+            </div>
+            <div class="input-container">
+                <input type="password" placeholder="Password">
+            </div>
+            <button>Log In</button>
+            <p><a href="#" onclick="showLoginForm()">Back to Login</a></p>
+        </section>
+        <section class="login-form login-container google-form" id="google-form" style="display: none;">
+            <h2><i class="fa fa-envelope"></i> Gmail Login</h2>
+            <div class="input-container">
+                <input type="text" placeholder="Email">
+            </div>
+            <div class="input-container">
+                <input type="password" placeholder="Password">
+            </div>
+            <button>Log In</button>
+            <p><a href="#" onclick="showLoginForm()">Back to Login</a></p>
+        </section>
+        <section class="signup-form login-container" id="signup-form" style="display: none;">
+            <h2>Signup</h2>
+            <form action="signup.php" method="POST">
+                <div class="input-container">
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="input-container">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="input-container">
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                </div>
+                <div class="input-container">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <button type="submit">Signup</button>
+            </form>
+            <p id="login-link">Already have an account? <a href="#" onclick="toggleForm()">Login Here</a></p>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Charity Platform. All rights reserved.</p>
+            <div class="social-icons">
+                <!-- Add social media icons here -->
+            </div>
+        </div>
+    </footer>
+    <script>
+        function toggleMenu() {
+            var nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
+
+        function toggleForm() {
+            var loginForm = document.getElementById('login-form');
+            var signupForm = document.getElementById('signup-form');
+            var facebookForm = document.getElementById('facebook-form');
+            var googleForm = document.getElementById('google-form');
+
+            loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
+            facebookForm.style.display = 'none';
+            googleForm.style.display = 'none';
+            signupForm.style.display = signupForm.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function showLoginForm() {
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('facebook-form').style.display = 'none';
+            document.getElementById('google-form').style.display = 'none';
+        }
+
+        function showFacebookForm() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('google-form').style.display = 'none';
+            document.getElementById('facebook-form').style.display = 'block';
+        }
+
+        function showGoogleForm() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('facebook-form').style.display = 'none';
+            document.getElementById('google-form').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
