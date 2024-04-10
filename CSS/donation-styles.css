@@ -7,7 +7,35 @@ body {
     background-color: #f0f0f0; /* Adds a light background for contrast */
 }
 
+/* Information Section Styles */
+.info-section {
+    background-color: #f8f9fa;
+    /* Light gray background */
+    padding: 40px 0;
+    /* Add padding top and bottom */
+    text-align: center;
+    /* Center align content */
+}
 
+.info-section h2 {
+    font-family: 'Roboto', sans-serif;
+    /* Use Roboto font */
+    font-size: 2rem;
+    /* Larger font size */
+    color: #005f73;
+    /* Dark blue color */
+    margin-bottom: 20px;
+    /* Add space below the title */
+}
+
+.info-section p {
+    font-family: 'Roboto', sans-serif;
+    /* Use Roboto font */
+    font-size: 1.2rem;
+    /* Medium font size */
+    color: #666;
+    /* Dark gray color */
+}
 
 .menu-toggle {
     display: none;
@@ -83,10 +111,17 @@ body {
     padding: 20px 0;
 }
 
+/* Swiper Pagination Styles */
+.swiper-pagination {
+    position: relative;
+    bottom: -20px;
+    /* Adjust the position of the pagination dots */
+    margin-top: 20px;
+    /* Add some space between the cards and the pagination dots */
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
-    
-
     .card {
         margin: 20px auto;
         width: 90%;
@@ -99,4 +134,10 @@ body {
     .swiper-container {
         overflow: visible; /* Ensures shadows are not cut off in mobile view */
     }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    top: 80%;
 }
