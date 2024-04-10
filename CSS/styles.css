@@ -335,3 +335,141 @@ html {
         /* Adjust paragraph font size for smaller screens */
     }
 }
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1000;
+    /* Sit on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Black w/ opacity */
+    transition: opacity 300ms ease-in-out;
+    /* Animate the background */
+}
+/* Show the modal when it's target is active (it is open) */
+.modal:target {
+    display: block;
+    /* Unhide the modal */
+    pointer-events: auto;
+    /* Enable mouse interactions */
+    opacity: 1;
+    /* Set the opacity to 1 to fade in */
+}
+
+.modal-content * {
+    font-family: 'Open Sans', sans-serif;
+    /* Change font-family to Open Sans */
+    color: #333;
+    /* Dark grey for better readability */
+    line-height: 1.6;
+    /* Spacing out lines for better readability */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefece;
+    margin: 10% auto;
+    /* 10% from the top and centered */
+    padding: 40px;
+    /* More padding */
+    border-radius: 10px;
+    /* Rounded corners */
+    width: 60%;
+    /* Width */
+    max-width: 600px;
+    /* Max width to control the line length */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    /* Softer shadow */
+    transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+    /* Animate the transform and opacity */
+    transform: scale(0.95);
+    /* Start with the content slightly scaled down */
+    opacity: 0;
+    /* Start with 0 opacity for fade-in effect */
+}
+
+/* Modal Animation for scaling up and fading in */
+.modal:target .modal-content {
+    transform: scale(1);
+    /* Scale the content up when active */
+    opacity: 1;
+    /* Fade in the content when active */
+}
+
+/* Styles for the content inside the modal */
+.modal-content h2,
+.modal-content h3,
+.modal-content p {
+    font-family: 'Open Sans', sans-serif;
+    /* New font family */
+    line-height: 1.6;
+    /* Spacing out lines for better readability */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    position: absolute;
+    /* Position it in the top right corner of the modal */
+    top: 20px;
+    /* Increase space from top */
+    right: 20px;
+    /* Increase space from right */
+    font-size: 30px;
+    /* Adjust font size */
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #333;
+    /* Darker color on hover/focus for better visibility */
+    cursor: pointer;
+}
+
+/* Button styles */
+.btn {
+    /* ... existing .btn styles ... */
+    cursor: pointer;
+    /* Additional for the button */
+}
+
+/* Add a fade-out animation to the modal content when closing */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+/* Add this class to the modal content when closing the modal to trigger fade-out */
+.modal-content.closing {
+    animation-name: fadeOut;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
+    /* Retain the final frame of the animation */
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 80%;
+        /* Slightly wider on smaller screens for better use of space */
+        margin: 10% auto;
+        /* Increase top margin on smaller screens */
+        padding: 30px;
+        /* Adjust padding on smaller screens */
+    }
+}
