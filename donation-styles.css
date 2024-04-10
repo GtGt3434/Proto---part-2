@@ -7,53 +7,7 @@ body {
     background-color: #f0f0f0; /* Adds a light background for contrast */
 }
 
-/* Header Styles */
-.navbar {
-    background-color: #005f73;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-}
-
-.logo {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-.nav-links li {
-    margin-right: 20px;
-}
-
-.nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 8px 12px;
-}
-
-.nav-links a.active,
-.nav-links a:hover {
-    background-color: #e9d8a6;
-    color: #000;
-    border-radius: 5px;
-}
 
 .menu-toggle {
     display: none;
@@ -131,15 +85,7 @@ body {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .nav-links li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    .nav-links a {
-        display: block;
-        text-align: center;
-    }
+    
 
     .card {
         margin: 20px auto;

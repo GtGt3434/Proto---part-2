@@ -7,6 +7,8 @@
     <title>Request Assistance</title>
     <!-- Link to the shared CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="footer-style.css">
+    <link rel="stylesheet" href="nav-style.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assistance-style.css">
 </head>
@@ -22,7 +24,6 @@
                     <!-- Set the 'active' class on the 'Request Assistance' link instead -->
                     <li><a href="assistance.html" class="active"><i class="fa fa-hands-helping"></i> Request Assistance</a></li>
                     <li><a href="volunteer.html"><i class="fa fa-users"></i> Volunteer</a></li>
-                    <li><a href="profile.html"><i class="fa fa-user-circle"></i> Profile</a></li>
                     <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Login</a></li>
                 </ul>
         
@@ -35,113 +36,115 @@
         </nav>
     </header>
 
+    <main>
     <!-- Progress Bar Section -->
-    <div class='progress'>
-        <div class='progress_inner'>
-            <div class='progress_inner__step'>
-                <label for='step-1'>Start order</label>
-            </div>
-            <div class='progress_inner__step'>
-                <label for='step-2'>Prepare gift</label>
-            </div>
-            <div class='progress_inner__step'>
-                <label for='step-3'>Pack gift</label>
-            </div>
-            <div class='progress_inner__step'>
-                <label for='step-4'>Decorate box</label>
-            </div>
-            <div class='progress_inner__step'>
-                <label for='step-5'>Send gift</label>
-            </div>
-            <input checked='checked' id='step-1' name='step' type='radio' onclick="showTabsSequentially(0)">
-            <input id='step-2' name='step' type='radio' onclick="showTabsSequentially(1)">
-            <input id='step-3' name='step' type='radio' onclick="showTabsSequentially(2)">
-            <input id='step-4' name='step' type='radio' onclick="showTabsSequentially(3)">
-            <input id='step-5' name='step' type='radio' onclick="showTabsSequentially(4)">
-            <div class='progress_inner__bar'></div>
-            <div class='progress_inner__bar--set'></div>
-            <div class='progress_inner__tabs'>
-                <div class='tab tab-0 active'>
-                    <h1>Personal Details</h1>
-                    <label for="full-name">Full Name:</label>
-                    <input type="text" id="full-name" name="full-name" required>
-                
-                    <label for="age">Age:</label>
-                    <input type="number" id="age" name="age" required>
-                
-                    <label for="gender">Gender:</label>
-                    <select id="gender" name="gender" required>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                
-                    <label for="contact">Contact Number:</label>
-                    <input type="tel" id="contact" name="contact" required>
+        <div class='progress'>
+            <div class='progress_inner'>
+                <div class='progress_inner__step'>
+                    <label for='step-1'>Start order</label>
                 </div>
+                <div class='progress_inner__step'>
+                    <label for='step-2'>Prepare gift</label>
+                </div>
+                <div class='progress_inner__step'>
+                    <label for='step-3'>Pack gift</label>
+                </div>
+                <div class='progress_inner__step'>
+                    <label for='step-4'>Decorate box</label>
+                </div>
+                <div class='progress_inner__step'>
+                    <label for='step-5'>Send gift</label>
+                </div>
+                <input checked='checked' id='step-1' name='step' type='radio' onclick="showTabsSequentially(0)">
+                <input id='step-2' name='step' type='radio' onclick="showTabsSequentially(1)">
+                <input id='step-3' name='step' type='radio' onclick="showTabsSequentially(2)">
+                <input id='step-4' name='step' type='radio' onclick="showTabsSequentially(3)">
+                <input id='step-5' name='step' type='radio' onclick="showTabsSequentially(4)">
+                <div class='progress_inner__bar'></div>
+                <div class='progress_inner__bar--set'></div>
+                <div class='progress_inner__tabs'>
+                    <div class='tab tab-0 active'>
+                        <h1>Personal Details</h1>
+                        <label for="full-name">Full Name:</label>
+                        <input type="text" id="full-name" name="full-name" required>
+                    
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" required>
+                    
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    
+                        <label for="contact">Contact Number:</label>
+                        <input type="tel" id="contact" name="contact" required>
+                    </div>
 
-                <div class='tab tab-1'>
-                    <h1>Type of Assistance</h1>
-                    <label for="assistance-type">Select the type of assistance you need:</label>
-                    <select id="assistance-type" name="assistance-type" required>
-                        <option value="financial">Financial</option>
-                        <option value="medical">Medical</option>
-                        <option value="housing">Housing</option>
-                        <option value="employment">Employment</option>
-                        <option value="other">Other</option>
-                    </select>
-                
-                    <label for="assistance-description">Please describe your situation:</label>
-                    <textarea id="assistance-description" name="assistance-description" rows="4" cols="50" required></textarea>
-                </div>
+                    <div class='tab tab-1'>
+                        <h1>Type of Assistance</h1>
+                        <label for="assistance-type">Select the type of assistance you need:</label>
+                        <select id="assistance-type" name="assistance-type" required>
+                            <option value="financial">Financial</option>
+                            <option value="medical">Medical</option>
+                            <option value="housing">Housing</option>
+                            <option value="employment">Employment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    
+                        <label for="assistance-description">Please describe your situation:</label>
+                        <textarea id="assistance-description" name="assistance-description" rows="4" cols="50" required></textarea>
+                    </div>
 
-                <div class='tab tab-2'>
-                    <h1>Financial Information</h1>
-                    <label for="income">Monthly Income:</label>
-                    <input type="number" id="income" name="income" step="0.01" required>
-                
-                    <label for="expenses">Monthly Expenses:</label>
-                    <input type="number" id="expenses" name="expenses" step="0.01" required>
-                
-                    <label for="assistance-amount">Amount of Assistance Required:</label>
-                    <input type="number" id="assistance-amount" name="assistance-amount" step="0.01" required>
-                </div>
+                    <div class='tab tab-2'>
+                        <h1>Financial Information</h1>
+                        <label for="income">Monthly Income:</label>
+                        <input type="number" id="income" name="income" step="0.01" required>
+                    
+                        <label for="expenses">Monthly Expenses:</label>
+                        <input type="number" id="expenses" name="expenses" step="0.01" required>
+                    
+                        <label for="assistance-amount">Amount of Assistance Required:</label>
+                        <input type="number" id="assistance-amount" name="assistance-amount" step="0.01" required>
+                    </div>
 
-                <div class='tab tab-3'>
-                    <h1>Supporting Documents</h1>
-                    <p>Please upload any documents that can support your request (e.g., medical reports, bills, employment letters).</p>
-                
-                    <label for="supporting-docs">Upload Documents:</label>
-                    <input type="file" id="supporting-docs" name="supporting-docs" multiple>
-                </div>
+                    <div class='tab tab-3'>
+                        <h1>Supporting Documents</h1>
+                        <p>Please upload any documents that can support your request (e.g., medical reports, bills, employment letters).</p>
+                    
+                        <label for="supporting-docs">Upload Documents:</label>
+                        <input type="file" id="supporting-docs" name="supporting-docs" multiple>
+                    </div>
 
-                <div class='tab tab-4'>
-                    <h1>Review & Submit</h1>
-                    <p>Please review your information before submitting your request for assistance.</p>
-                
-                    <!-- Include a summary of the provided information here for review -->
-                
-                    <label for="confirm">I confirm that the information provided is accurate to the best of my knowledge.</label>
-                    <input type="checkbox" id="confirm" name="confirm" required>
-                
-                    <button type="submit">Submit Request</button>
-                </div>
+                    <div class='tab tab-4'>
+                        <h1>Review & Submit</h1>
+                        <p>Please review your information before submitting your request for assistance.</p>
+                    
+                        <!-- Include a summary of the provided information here for review -->
+                    
+                        <label for="confirm">I confirm that the information provided is accurate to the best of my knowledge.</label>
+                        <input type="checkbox" id="confirm" name="confirm" required>
+                    
+                        <button type="submit">Submit Request</button>
+                    </div>
 
-            </div>
-            <div class='progress_inner__status'>
-                <div class='box_base'></div>
-                <div class='box_lid'></div>
-                <div class='box_ribbon'></div>
-                <div class='box_bow'>
-                    <div class='box_bow__left'></div>
-                    <div class='box_bow__right'></div>
                 </div>
-                <div class='box_item'></div>
-                <div class='box_tag'></div>
-                <div class='box_string'></div>
+                <div class='progress_inner__status'>
+                    <div class='box_base'></div>
+                    <div class='box_lid'></div>
+                    <div class='box_ribbon'></div>
+                    <div class='box_bow'>
+                        <div class='box_bow__left'></div>
+                        <div class='box_bow__right'></div>
+                    </div>
+                    <div class='box_item'></div>
+                    <div class='box_tag'></div>
+                    <div class='box_string'></div>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
     <script>
         
         // Get all tabs
