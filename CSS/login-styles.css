@@ -190,3 +190,104 @@ html {
 @media screen and (max-width: 768px) {
     /* Responsive styling */
 }
+
+.role-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.role-card-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.role-card {
+    border: 2px solid transparent;
+    /* Default non-selected state */
+    border-radius: 10px;
+    /* Rounded corners for better aesthetics */
+    padding: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    /* Smooth transitions */
+    background-color: #f9f9f9;
+    /* Slightly off-white background to stand out on pure white backgrounds */
+}
+
+.role-card:hover {
+    border-color: #007bff;
+    /* Highlight border on hover to indicate interactivity */
+    background-color: #f1f1f1;
+    /* Slightly darken background on hover */
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+    /* Soft glow effect */
+}
+
+.role-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.role-card span {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+input[type="radio"] {
+    display: none;
+    /* Hide the default radio buttons */
+}
+
+input[type="radio"]:checked+.role-card {
+    border-color: #007bff;
+    /* Bright blue border for selected card */
+    background-color: #e3f2fd;
+    /* Light blue background for selected card */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    /* More prominent shadow for selected state */
+}
+
+input[type="radio"]:focus+.role-card {
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+    /* Focus ring around the card */
+}
+
+.signup-form {
+    width: 80%;
+    /* Adjust the width as needed */
+    max-width: 500px;
+    /* Limit the maximum width */
+    margin: 100px auto;
+    /* Center the form vertically */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.signup-form,
+#roleSelection {
+    display: none;
+    /* Initially hide both the signup form and role selection section */
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
