@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar" id="navbar">
             <div class="nav-container">
-                <a href="index.html" class="logo">Charity Platform</a>
+                <a href="#" class="logo">Charity Platform</a>
                 <ul class="nav-links">
                     <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="donation.html"><i class="fa fa-hand-holding-heart"></i> Donate</a></li>
@@ -35,54 +35,54 @@
     <main class="signup-page">
         <section class="signup-form login-container" id="signup-form">
             <h2>Signup</h2>
-            <form action="signup.php" method="POST" id="signupForm" onsubmit="return false;">
-                <div class="input-container">
-                    <input type="text" name="username" placeholder="Username" required pattern="^\w+$"
-                        title="Username can only contain letters, numbers, and underscores.">
+            <form action="/signup" method="POST" id="signupForm" onsubmit="return false;">
+                    <div class="input-container">
+                        <input type="text" name="username" placeholder="Username" required pattern="^\w+$"
+                            title="Username can only contain letters, numbers, and underscores.">
+                    </div>
+                    <div class="input-container">
+                        <input type="password" name="password" placeholder="Password" required
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                            title="Password must be at least 8 characters long and include at least one letter and one number.">
+                    </div>
+                    <div class="input-container">
+                        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="input-container">
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <button type="button" onclick="validateForm()">Signup</button>
+                <div id="roleSelection">
+                    <h3>Select your role:</h3>
+                    <div class="role-options">
+                        <label class="role-card-label" onclick="selectRole('donor')">
+                            <input type="radio" name="role" value="donor" required>
+                            <div class="role-card">
+                                <img src="https://hips.hearstapps.com/hmg-prod/images/organ-donor-faq-1591216735.png?crop=1.00xw:1.00xh;0,0&resize=1200:*"
+                                    alt="Donor">
+                                <span>Donor</span>
+                            </div>
+                        </label>
+                        <label class="role-card-label" onclick="selectRole('volunteer')">
+                            <input type="radio" name="role" value="volunteer" required>
+                            <div class="role-card">
+                                <img src="https://static.vecteezy.com/system/resources/previews/002/328/860/original/three-volunteers-planting-trees-in-a-forest-vector.jpg"
+                                    alt="Volunteer">
+                                <span>Volunteer</span>
+                            </div>
+                        </label>
+                        <label class="role-card-label" onclick="selectRole('aid_seeker')">
+                            <input type="radio" name="role" value="aid_seeker" required>
+                            <div class="role-card">
+                                <img src="https://img.freepik.com/premium-vector/poor-homeless-man-sits-floor-near-trash-can-need-help-from-fellow-human-beings-together-flat-style-cartoon-vector-illustration_610956-217.jpg?w=1380"
+                                    alt="Aid Seeker">
+                                <span>Aid Seeker</span>
+                            </div>
+                        </label>
+                    </div>
+                    <button type="button" onclick="submitFinalForm()">Complete Signup</button>
                 </div>
-                <div class="input-container">
-                    <input type="password" name="password" placeholder="Password" required
-                        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-                        title="Password must be at least 8 characters long and include at least one letter and one number.">
-                </div>
-                <div class="input-container">
-                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-                </div>
-                <div class="input-container">
-                    <input type="email" name="email" placeholder="Email" required>
-                </div>
-                <button type="button" onclick="validateForm()">Signup</button>
             </form>
-            <div id="roleSelection">
-                <h3>Select your role:</h3>
-                <div class="role-options">
-                    <label class="role-card-label" onclick="selectRole('donor')">
-                        <input type="radio" name="role" value="donor" required>
-                        <div class="role-card">
-                            <img src="https://hips.hearstapps.com/hmg-prod/images/organ-donor-faq-1591216735.png?crop=1.00xw:1.00xh;0,0&resize=1200:*"
-                                alt="Donor">
-                            <span>Donor</span>
-                        </div>
-                    </label>
-                    <label class="role-card-label" onclick="selectRole('volunteer')">
-                        <input type="radio" name="role" value="volunteer" required>
-                        <div class="role-card">
-                            <img src="https://static.vecteezy.com/system/resources/previews/002/328/860/original/three-volunteers-planting-trees-in-a-forest-vector.jpg"
-                                alt="Volunteer">
-                            <span>Volunteer</span>
-                        </div>
-                    </label>
-                    <label class="role-card-label" onclick="selectRole('aid_seeker')">
-                        <input type="radio" name="role" value="aid_seeker" required>
-                        <div class="role-card">
-                            <img src="https://img.freepik.com/premium-vector/poor-homeless-man-sits-floor-near-trash-can-need-help-from-fellow-human-beings-together-flat-style-cartoon-vector-illustration_610956-217.jpg?w=1380"
-                                alt="Aid Seeker">
-                            <span>Aid Seeker</span>
-                        </div>
-                    </label>
-                </div>
-                <button type="button" onclick="submitFinalForm()">Complete Signup</button>
-            </div>
             <p>Already have an account? <a href="login.html">Login Here</a></p>
         </section>
     </main>
@@ -146,20 +146,20 @@
         }
 
         // Remove the display: none style from the signup form
-            document.addEventListener("DOMContentLoaded", function () {
-                document.getElementById('signup-form').style.display = 'block';
-            });
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('signup-form').style.display = 'block';
+        });
 
-            // Function to hide the role selection section initially
-            function hideRoleSelection() {
-                var roleSelection = document.getElementById('roleSelection');
-                roleSelection.style.display = 'none';
-            }
+        // Function to hide the role selection section initially
+        function hideRoleSelection() {
+            var roleSelection = document.getElementById('roleSelection');
+            roleSelection.style.display = 'none';
+        }
 
-            // Call hideRoleSelection function when the page loads
-            document.addEventListener("DOMContentLoaded", function () {
-                hideRoleSelection();
-            });
+        // Call hideRoleSelection function when the page loads
+        document.addEventListener("DOMContentLoaded", function () {
+            hideRoleSelection();
+        });
 
     </script>
 </body>
