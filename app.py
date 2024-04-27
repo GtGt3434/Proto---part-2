@@ -26,6 +26,11 @@ def signup():
         password = request.form.get('password')
         role = request.form.get('role')
 
+        # Check if username already exists
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            return 'Username already exists. Please choose a different username.'
+
         # Create a new User object and add it to the database
         new_user = User(username=username, email=email, password=password, role=role)
         db.session.add(new_user)
