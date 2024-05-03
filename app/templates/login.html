@@ -1,105 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <title>Charity Platform - Login</title>
-    <link rel="stylesheet" href="../../static/CSS/footer-style.css">
-    <link rel="stylesheet" href="../../static/CSS/nav-style.css">
-    <link rel="stylesheet" href="../../static/CSS/login-styles.css">
-</head>
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/login-styles.css') }}">
+{% endblock %}
 
-<body>
-    <header>
-        <nav class="navbar" id="navbar">
-            <div class="nav-container">
-                <a href="index.html" class="logo">Charity Platform</a>
-                <ul class="nav-links">
-                    <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="donation.html"><i class="fa fa-hand-holding-heart"></i> Donate</a></li>
-                    <li><a href="assistance.html"><i class="fa fa-hands-helping"></i> Request Assistance</a></li>
-                    <li><a href="volunteer.html"><i class="fa fa-users"></i> Volunteer</a></li>
-                    <li><a href="login.html" class="active"><i class="fa fa-sign-in-alt"></i> Login</a></li>
-                </ul>
-                <div class="menu-toggle" onclick="toggleMenu()">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
+{% block content %}
+<main class="login-page">
+    <section class="login-form login-container" id="login-form">
+        <h2>Login</h2>
+        <form action="/login" method="POST"> <!-- Changed action to "/login" and method to "POST" -->
+            <div class="input-container">
+                <input type="text" name="username" placeholder="Username" required>
             </div>
-        </nav>
-    </header>
-    <main class="login-page">
-        <section class="login-form login-container" id="login-form">
-            <h2>Login</h2>
-            <form action="/login" method="POST"> <!-- Changed action to "/login" and method to "POST" -->
-                <div class="input-container">
-                    <input type="text" name="username" placeholder="Username" required>
-                </div>
-                <div class="input-container">
-                    <input type="password" name="password" placeholder="Password" required>
-                </div>
-                <button type="submit">Login</button>
-            </form>
-            <p><a href="forgot_password.html">Forgot Password?</a></p>
-            <p>Don't have an account? <a href="signup.html">Create New Account</a></p>
-        </section>
-    </main>
-    <!-- Flash messages section -->
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <div class="flash-messages">
-        {% for message in messages %}
-        <div class="flash-message {{ message[1] }}">
-            {{ message[0] }}
-        </div>
-        {% endfor %}
+            <div class="input-container">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p><a href="forgot_password.html">Forgot Password?</a></p>
+        <p>Don't have an account? <a href="{{ url_for('signup') }}">Create New Account</a></p>
+    </section>
+</main>
+{% endblock %}
+<!-- Flash messages section -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="flash-messages">
+    {% for message in messages %}
+    <div class="flash-message {{ message[1] }}">
+        {{ message[0] }}
     </div>
-    {% endif %}
-    {% endwith %}
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 Charity Platform. All rights reserved.</p>
-            <div class="social-icons">
-                <!-- Add social media icons here -->
-                <div class="social-icons">
-                    <!-- Add social media icons here -->
-                    <a href="https://facebook.com" class="fab fa-facebook"></a>
-                    <a href="https://twitter.com" class="fab fa-twitter"></a>
-                    <a href="https://instagram.com" class="fab fa-instagram"></a>
-                    <a href="https://linkedin.com" class="fab fa-linkedin"></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script>
-        function toggleMenu() {
-            var nav = document.querySelector('.nav-links');
-            nav.classList.toggle('active');
-        }
+{% block extra_js %}
+<script>
+    function toggleMenu() {
+        var nav = document.querySelector('.nav-links');
+        nav.classList.toggle('active');
+    }
 
-        function showLoginForm() {
-            document.getElementById('facebook-form').style.display = 'none';
-            document.getElementById('google-form').style.display = 'none';
-            document.getElementById('login-form').style.display = 'block';
-        }
+    function showLoginForm() {
+        document.getElementById('facebook-form').style.display = 'none';
+        document.getElementById('google-form').style.display = 'none';
+        document.getElementById('login-form').style.display = 'block';
+    }
 
-        function showFacebookForm() {
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('google-form').style.display = 'none';
-            document.getElementById('facebook-form').style.display = 'block';
-        }
+    function showFacebookForm() {
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('google-form').style.display = 'none';
+        document.getElementById('facebook-form').style.display = 'block';
+    }
 
-        function showGoogleForm() {
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('facebook-form').style.display = 'none';
-            document.getElementById('google-form').style.display = 'block';
-        }
-    </script>
-</body>
-
-</html>
+    function showGoogleForm() {
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('facebook-form').style.display = 'none';
+        document.getElementById('google-form').style.display = 'block';
+    }
+</script>
+{% endblock %}
