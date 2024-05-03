@@ -35,7 +35,7 @@
     <main class="login-page">
         <section class="login-form login-container" id="login-form">
             <h2>Login</h2>
-            <form action="login.php" method="POST">
+            <form action="/login" method="POST"> <!-- Changed action to "/login" and method to "POST" -->
                 <div class="input-container">
                     <input type="text" name="username" placeholder="Username" required>
                 </div>
@@ -48,7 +48,20 @@
             <p>Don't have an account? <a href="signup.html">Create New Account</a></p>
         </section>
     </main>
-    <footer>  
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for message in messages %}
+        <div class="flash-message {{ message[1] }}">
+            {{ message[0] }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <footer>
         <div class="footer-content">
             <p>&copy; 2024 Charity Platform. All rights reserved.</p>
             <div class="social-icons">
