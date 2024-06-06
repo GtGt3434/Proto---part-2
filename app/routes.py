@@ -13,7 +13,7 @@ def signup():
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             flash('Username already exists. Please choose a different one.', 'error')
-            return render_template('signup.html')  # Change this to render instead of redirect
+            return render_template('signup.html')  
 
         existing_email = User.query.filter_by(email=email).first()
         if existing_email:
