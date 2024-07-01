@@ -1,29 +1,77 @@
 {% extends "base.html" %}
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='CSS/login-styles.css') }}">
+<style>
+    .signup-page {
+        background-image: url('{{ background_image_url }}');
+        background-size: cover;
+        background-position: center;
+        font-family: 'Roboto', sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flash-messages {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+    }
+
+    .flash-message {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .flash-message.info {
+        background-color: blue;
+    }
+
+    .flash-message.error {
+        background-color: red;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <main class="signup-page">
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for category, message in messages %}
+        <div class="flash-message {{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
     <section class="signup-form login-container" id="signup-form">
         <h2>Signup</h2>
-        <form action="/signup" method="POST" id="signupForm" onsubmit="return false;">
-                <div class="input-container">
-                    <input type="text" name="username" placeholder="Username" required pattern="^\w+$"
-                        title="Username can only contain letters, numbers, and underscores.">
-                </div>
-                <div class="input-container">
-                    <input type="password" name="password" placeholder="Password" required
-                        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-                        title="Password must be at least 8 characters long and include at least one letter and one number.">
-                </div>
-                <div class="input-container">
-                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-                </div>
-                <div class="input-container">
-                    <input type="email" name="email" placeholder="Email" required>
-                </div>
-                <button type="button" onclick="validateForm()">Signup</button>
+        <form action="{{ url_for('signup') }}" method="POST" id="signupForm" onsubmit="return false;">
+            <div class="input-container">
+                <input type="text" name="username" placeholder="Username" required pattern="^\w+$"
+                    title="Username can only contain letters, numbers, and underscores.">
+            </div>
+            <div class="input-container">
+                <input type="password" name="password" placeholder="Password" required
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                    title="Password must be at least 8 characters long and include at least one letter and one number.">
+            </div>
+            <div class="input-container">
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            </div>
+            <div class="input-container">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <button type="button" onclick="validateForm()">Signup</button>
             <div id="roleSelection">
                 <h3>Select your role:</h3>
                 <div class="role-options">
@@ -55,7 +103,7 @@
                 <button type="button" onclick="submitFinalForm()">Complete Signup</button>
             </div>
         </form>
-        <p>Already have an account? <a href="login.html">Login Here</a></p>
+        <p>Already have an account? <a href="{{ url_for('login') }}">Login Here</a></p>
     </section>
 </main>
 {% endblock %}
@@ -125,5 +173,21 @@
         hideRoleSelection();
     });
 
+    // Function to remove flash messages after 5 seconds
+    function removeFlashMessages() {
+        const flashMessages = document.querySelectorAll('.flash-message');
+        flashMessages.forEach(message => {
+            setTimeout(() => {
+                message.style.transition = 'opacity 0.5s ease-out';
+                message.style.opacity = '0';
+                setTimeout(() => {
+                    message.remove();
+                }, 500); // Match this timeout with the transition duration
+            }, 5000); // 5 seconds delay before fading out
+        });
+    }
+
+    // Call the function on page load
+    window.onload = removeFlashMessages;
 </script>
 {% endblock %}

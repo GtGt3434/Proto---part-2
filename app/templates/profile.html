@@ -1,90 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/profile.css') }}">
+{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donor Profile - Charity Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="path/to/your/custom/style.css"> <!-- Add your custom CSS file -->
-    <link rel="stylesheet" href="path/to/your/navbar-style.css"> <!-- Add your navbar CSS file -->
-    <link rel="stylesheet" href="path/to/your/footer-style.css"> <!-- Add your footer CSS file -->
-</head>
-
-<body>
-    <!-- Navbar -->
-    <header>
-        <nav class="navbar" id="navbar">
-            <div class="nav-container">
-                <a href="#" class="logo">Charity Platform</a>
-                <ul class="nav-links">
-                    <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="donation.html"><i class="fa fa-hand-holding-heart"></i> Donate</a></li>
-                    <li><a href="assistance.html"><i class="fa fa-hands-helping"></i> Request Assistance</a></li>
-                    <li><a href="volunteer.html"><i class="fa fa-users"></i> Volunteer</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Logout</a></li>
-                    <!-- Change to logout link -->
-                </ul>
-                <div class="menu-toggle" onclick="toggleMenu()">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Content - Donor Profile -->
-    <main class="container">
-        <section class="profile-section">
-            <h1>Welcome, {{ donor_info[1] }}</h1>
-            <div class="profile-info">
-                <p><strong>Username:</strong> {{ donor_info[1] }}</p>
-                <p><strong>Email:</strong> {{ donor_info[2] }}</p>
-                <p><strong>Role:</strong> Donor</p>
-                <p><strong>Account Created At:</strong> {{ donor_info[5] }}</p>
-            </div>
-        </section>
-
-        <section class="donation-history">
-            <h2>Donation History</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Cause</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for donation in donation_history %}
-                    <tr>
-                        <td>{{ donation[4] }}</td>
-                        <td>${{ donation[2] }}</td>
-                        <td>{{ donation[3] }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 Charity Platform. All rights reserved.</p>
-            <div class="social-icons">
-                <a href="https://facebook.com" class="fab fa-facebook"></a>
-                <a href="https://twitter.com" class="fab fa-twitter"></a>
-                <a href="https://instagram.com" class="fab fa-instagram"></a>
-                <a href="https://linkedin.com" class="fab fa-linkedin"></a>
-            </div>
+{% block content %}
+<main class="profile-page">
+    <section class="profile-container">
+        <h2>Profile</h2>
+        <div class="profile-details">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Role:</strong> {{ user.role }}</p>
+            <p><strong>Member Since:</strong> {{ user.created_at.strftime('%Y-%m-%d') }}</p>
         </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="path/to/your/navbar-script.js"></script> <!-- Add your navbar JavaScript file -->
-</body>
-
-</html>
+        <div class="donations-history">
+            <h3>Your Donations</h3>
+            {% if donations %}
+            <ul>
+                {% for donation in donations %}
+                <li>{{ donation.amount }} - {{ donation.created_at.strftime('%Y-%m-%d') }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>You have not made any donations yet.</p>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -2,13 +2,60 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='CSS/login-styles.css') }}">
+<style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        background-image: url('{{ background_image_url }}');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .flash-messages {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+    }
+
+    .flash-message {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .flash-message.info {
+        background-color: blue;
+    }
+
+    .flash-message.error {
+        background-color: red;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <main class="login-page">
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for category, message in messages %}
+        <div class="flash-message {{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
     <section class="login-form login-container" id="login-form">
         <h2>Login</h2>
-        <form action="/login" method="POST"> <!-- Changed action to "/login" and method to "POST" -->
+        <form action="{{ url_for('login') }}" method="POST">
             <div class="input-container">
                 <input type="text" name="username" placeholder="Username" required>
             </div>
@@ -17,23 +64,11 @@
             </div>
             <button type="submit">Login</button>
         </form>
-        <p><a href="forgot_password.html">Forgot Password?</a></p>
+        <p><a href="{{ url_for('login') }}">Forgot Password?</a></p>
         <p>Don't have an account? <a href="{{ url_for('signup') }}">Create New Account</a></p>
     </section>
 </main>
 {% endblock %}
-<!-- Flash messages section -->
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<div class="flash-messages">
-    {% for message in messages %}
-    <div class="flash-message {{ message[1] }}">
-        {{ message[0] }}
-    </div>
-    {% endfor %}
-</div>
-{% endif %}
-{% endwith %}
 
 {% block extra_js %}
 <script>
@@ -59,5 +94,22 @@
         document.getElementById('facebook-form').style.display = 'none';
         document.getElementById('google-form').style.display = 'block';
     }
+
+    // Function to remove flash messages after 5 seconds
+    function removeFlashMessages() {
+        const flashMessages = document.querySelectorAll('.flash-message');
+        flashMessages.forEach(message => {
+            setTimeout(() => {
+                message.style.transition = 'opacity 0.5s ease-out';
+                message.style.opacity = '0';
+                setTimeout(() => {
+                    message.remove();
+                }, 500); // Match this timeout with the transition duration
+            }, 5000); // 5 seconds delay before fading out
+        });
+    }
+
+    // Call the function on page load
+    window.onload = removeFlashMessages;
 </script>
 {% endblock %}

@@ -4,13 +4,13 @@
 {% endblock %}
 
 {% block content %}
-
 <main>
     <!-- Information Section -->
     <section class="info-section">
         <div class="container">
-            <h2>Make an Impact with Our Platform <3</h2>
-            <p>Support causes that matter. From education to healthcare, your donations drive positive change worldwide.</p>
+            <h2>Make an Impact with Our Platform <3 </h2>
+                    <p>Support causes that matter. From education to healthcare, your donations drive positive change
+                        worldwide.</p>
         </div>
     </section>
     <section class="donation-cards swiper-container">
@@ -18,7 +18,7 @@
             <!-- Card 1 -->
             <div class="swiper-slide card">
                 <div class="card-image">
-                    <img src="https://source.unsplash.com/random/300x200?charity,education" alt="Education Project">
+                    <img src="{{ education_image }}" alt="Education Project">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Education for All</h3>
@@ -29,7 +29,7 @@
             <!-- Card 2 -->
             <div class="swiper-slide card">
                 <div class="card-image">
-                    <img src="https://source.unsplash.com/random/300x200?charity,health" alt="Healthcare Project">
+                    <img src="{{ health_image }}" alt="Healthcare Project">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Healthcare Access</h3>
@@ -40,8 +40,7 @@
             <!-- Card 3 -->
             <div class="swiper-slide card">
                 <div class="card-image">
-                    <img src="https://source.unsplash.com/random/300x200?charity,environment"
-                        alt="Environmental Conservation">
+                    <img src="{{ environment_image }}" alt="Environmental Conservation">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Save the Environment</h3>
@@ -52,7 +51,7 @@
             <!-- Card 4 -->
             <div class="swiper-slide card">
                 <div class="card-image">
-                    <img src="https://source.unsplash.com/random/300x200?charity,animals" alt="Animal Welfare">
+                    <img src="{{ animals_image }}" alt="Animal Welfare">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Animal Welfare</h3>
@@ -63,7 +62,7 @@
             <!-- Card 5 -->
             <div class="swiper-slide card">
                 <div class="card-image">
-                    <img src="https://source.unsplash.com/random/300x200?charity,hunger" alt="Fight Hunger">
+                    <img src="{{ hunger_image }}" alt="Fight Hunger">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Fight Hunger</h3>
@@ -74,7 +73,7 @@
             <!-- Card 6 -->
             <div class="swiper-slide card">
                 <div class="card-image">
-                    <img src="https://source.unsplash.com/random/300x200?charity,water" alt="Clean Water Projects">
+                    <img src="{{ water_image }}" alt="Clean Water Projects">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Clean Water for Everyone</h3>
@@ -85,7 +84,7 @@
             <!-- Card 7 -->
             <div class="swiper-slide card">
                 <div class="card-image">
-                    <img src="https://source.unsplash.com/random/300x200?charity,shelter" alt="Shelter Support">
+                    <img src="{{ shelter_image }}" alt="Shelter Support">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Shelter Support</h3>
@@ -96,7 +95,7 @@
             <!-- Card 8 -->
             <div class="swiper-slide card">
                 <div class="card-image">
-                    <img src="https://source.unsplash.com/random/300x200?charity,clothes" alt="Clothing Drives">
+                    <img src="{{ clothes_image }}" alt="Clothing Drives">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Clothing Drives</h3>
@@ -107,12 +106,12 @@
             <!-- Card 9 -->
             <div class="swiper-slide card">
                 <div class="card-image">
-                    <img src="https://source.unsplash.com/random/300x200?charity,education" alt="Skill Development">
+                    <img src="{{ skills_image }}" alt="Skill Development">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">Skill Development</h3>
-                    <p class="card-text">Empower individuals by providing training and skill development
-                        opportunities.</p>
+                    <p class="card-text">Empower individuals by providing training and skill development opportunities.
+                    </p>
                     <a href="#" class="btn card-btn">Learn More</a>
                 </div>
             </div>
@@ -141,5 +140,3 @@
     });
 </script>
 {% endblock %}
-
-
