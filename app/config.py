@@ -1,40 +1,37 @@
 import os
-import sys
 from dotenv import load_dotenv
 
-# Ensure stdout uses UTF-8 encoding to handle non-ASCII characters
-sys.stdout.reconfigure(encoding='utf-8')
-
-# Load environment variables from .env file in the instance folder
+# Explicitly specify the path to the .env file
 dotenv_path = os.path.join(os.path.dirname(__file__), '../instance/.env')
-print(f"Loading environment variables from: {dotenv_path}")
 load_dotenv(dotenv_path)
-
-print(f"SECRET_KEY: {os.getenv('SECRET_KEY')}")
-print(f"DATABASE_USERNAME: {os.getenv('DATABASE_USERNAME')}")
-print(f"DATABASE_PASSWORD: {os.getenv('DATABASE_PASSWORD')}")
-print(f"DATABASE_HOST: {os.getenv('DATABASE_HOST')}")
-print(f"DATABASE_NAME: {os.getenv('DATABASE_NAME')}")
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{os.getenv('DATABASE_USERNAME')}:{os.getenv('DATABASE_PASSWORD')}@{os.getenv('DATABASE_HOST')}/{os.getenv('DATABASE_NAME')}"
+    SQLALCHEMY_DATABASE_URI = (
+        f"mysql+pymysql://{os.getenv('DATABASE_USERNAME')}:{os.getenv('DATABASE_PASSWORD')}@"
+        f"{os.getenv('DATABASE_HOST')}/{os.getenv('DATABASE_NAME')}?ssl_ca={os.path.abspath('global-bundle.pem')}"
+    )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    MAIL_SERVER = os.getenv('MAIL_SERVER')
+    MAIL_PORT = os.getenv('MAIL_PORT')
+    MAIL_USE_TLS = os.getenv('MAIL_USE_TLS') == 'True'
+    MAIL_USERNAME = os.getenv('MAIL_USERNAME')
+    MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
 
-# Development configuration
+    # File upload configurations
+    UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')  
+    ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'doc', 'docx'}
+
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_ECHO = True
+    SERVER_NAME = '127.0.0.1:5000'
 
-# Production configuration
 class ProductionConfig(Config):
     DEBUG = False
 
-# Setup the config to use
 config = {
     'development': DevelopmentConfig,
     'production': ProductionConfig,
     'default': DevelopmentConfig
 }
-
-print(f"Database URI: {Config.SQLALCHEMY_DATABASE_URI}")

@@ -2,13 +2,42 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='CSS/volunteer-styles.css') }}">
+<style>
+    .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+        max-height: 200px;
+        /* Set a fixed height */
+        overflow-y: scroll;
+        /* Enable vertical scrolling */
+        border: 1px solid #ddd;
+        /* Optional: Add a border */
+        padding: 10px;
+        /* Optional: Add padding inside the container */
+    }
+
+    .skill {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .skill.selected {
+        background-color: #28a745;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <div class="background-slideshow">
-    <img src="https://source.unsplash.com/random/1920x1080?volunteer" alt="Volunteering Background" class="bg-img">
-    <img src="https://source.unsplash.com/random/1920x1080?community" alt="Community Background" class="bg-img">
-    <img src="https://source.unsplash.com/random/1920x1080?helping" alt="Helping Background" class="bg-img">
+    <img src="{{ volunteer_image }}" alt="Volunteering Background" class="bg-img">
+    <img src="{{ community_image }}" alt="Community Background" class="bg-img">
+    <img src="{{ helping_image }}" alt="Helping Background" class="bg-img">
 </div>
 
 <main>
@@ -16,18 +45,18 @@
         <h1 class="volunteer-title">Become a Volunteer</h1>
         <p>Join our community of volunteers and make a difference in the world. Please fill out the form below to
             get started.</p>
-        <form id="volunteer-form">
+        <form id="volunteer-form" method="POST" action="{{ url_for('volunteer') }}">
             <div class="form-group">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+                <label for="full_name">Full Name:</label>
+                <input type="text" id="full_name" name="full_name" required>
             </div>
             <div class="form-group">
                 <label for="email">Email Address:</label>
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9+-]+"
+                <label for="phone_number">Phone Number:</label>
+                <input type="tel" id="phone_number" name="phone_number" pattern="[0-9+-]+"
                     title="Phone number can only contain numbers, +, and -">
             </div>
             <div class="form-group">
@@ -39,11 +68,63 @@
                 <input type="text" id="location" name="location">
             </div>
             <div class="form-group">
-                <label for="skills">Skills/Interests:</label>
-                <textarea id="skills" name="skills"></textarea>
+                <label for="skills_interests">Skills/Interests:</label>
+                <div class="skills-container" id="skills-container"></div>
+                <input type="hidden" id="skills_interests" name="skills_interests">
             </div>
             <button type="submit">Submit</button>
         </form>
     </section>
 </main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Fetch skills from the server and populate the skills container
+    fetch('{{ url_for("get_skills") }}')
+        .then(response => response.json())
+        .then(skills => {
+            const skillsContainer = document.getElementById('skills-container');
+            skills.forEach(skill => {
+                const skillElement = document.createElement('div');
+                skillElement.textContent = skill;
+                skillElement.className = 'skill';
+                skillElement.addEventListener('click', () => {
+                    skillElement.classList.toggle('selected');
+                    updateSkillsInput();
+                });
+                skillsContainer.appendChild(skillElement);
+            });
+        });
+
+    // Update the hidden input with the selected skills
+    function updateSkillsInput() {
+        const selectedSkills = Array.from(document.querySelectorAll('.skill.selected'))
+            .map(skillElement => skillElement.textContent);
+        document.getElementById('skills_interests').value = selectedSkills.join(', ');
+    }
+
+    // Handle form submission
+    document.getElementById('volunteer-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            updateSkillsInput(); // Ensure the input is updated before submitting the form
+            const formData = new FormData(this);
+            fetch('{{ url_for("volunteer") }}', {
+                method: 'POST',
+                body: new URLSearchParams(formData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = '{{ url_for("volunteer_loading") }}';
+                    } else {
+                        alert(data.message || 'There was an error submitting the form.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was an error submitting the form.');
+                });
+        });
+</script>
 {% endblock %}
