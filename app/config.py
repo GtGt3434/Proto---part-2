@@ -18,9 +18,14 @@ class Config:
     MAIL_USERNAME = os.getenv('MAIL_USERNAME')
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
 
+    # File upload configurations
+    UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')  
+    ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'doc', 'docx'}
+
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_ECHO = True
+    SERVER_NAME = '127.0.0.1:5000'
 
 class ProductionConfig(Config):
     DEBUG = False

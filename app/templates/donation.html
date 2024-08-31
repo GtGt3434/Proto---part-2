@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='CSS/donation-styles.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 {% endblock %}
 
 {% block content %}
@@ -8,119 +9,100 @@
     <!-- Information Section -->
     <section class="info-section">
         <div class="container">
-            <h2>Make an Impact with Our Platform <3 </h2>
-                    <p>Support causes that matter. From education to healthcare, your donations drive positive change
-                        worldwide.</p>
+            <h2>Make an Impact with Our Platform</h2>
+            <p>Support causes that matter. From education to healthcare, your donations drive positive change worldwide.
+            </p>
         </div>
     </section>
+
+    <!-- Donation Cards Section -->
     <section class="donation-cards swiper-container">
         <div class="swiper-wrapper">
-            <!-- Card 1 -->
+            {% for category in categories %}
             <div class="swiper-slide card">
                 <div class="card-image">
-                    <img src="{{ education_image }}" alt="Education Project">
+                    <img src="{{ category.image_url }}" alt="{{ category.title }}">
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">Education for All</h3>
-                    <p class="card-text">Support educational programs in underprivileged regions.</p>
-                    <a href="#" class="btn card-btn">Learn More</a>
+                    <h3 class="card-title">{{ category.title }}</h3>
+                    <p class="card-text">{{ category.description }}</p>
+                    <a href="{{ url_for('donation_detail', category_id=category.id) }}" class="btn card-btn">Learn
+                        More</a>
                 </div>
             </div>
-            <!-- Card 2 -->
-            <div class="swiper-slide card">
-                <div class="card-image">
-                    <img src="{{ health_image }}" alt="Healthcare Project">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Healthcare Access</h3>
-                    <p class="card-text">Help provide essential medical services to those in need.</p>
-                    <a href="#" class="btn card-btn">Learn More</a>
-                </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="swiper-slide card">
-                <div class="card-image">
-                    <img src="{{ environment_image }}" alt="Environmental Conservation">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Save the Environment</h3>
-                    <p class="card-text">Engage in projects to protect and restore our planet.</p>
-                    <a href="#" class="btn card-btn">Learn More</a>
-                </div>
-            </div>
-            <!-- Card 4 -->
-            <div class="swiper-slide card">
-                <div class="card-image">
-                    <img src="{{ animals_image }}" alt="Animal Welfare">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Animal Welfare</h3>
-                    <p class="card-text">Contribute to the well-being and protection of animals.</p>
-                    <a href="#" class="btn card-btn">Learn More</a>
-                </div>
-            </div>
-            <!-- Card 5 -->
-            <div class="swiper-slide card">
-                <div class="card-image">
-                    <img src="{{ hunger_image }}" alt="Fight Hunger">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Fight Hunger</h3>
-                    <p class="card-text">Support initiatives to combat hunger and provide food security.</p>
-                    <a href="#" class="btn card-btn">Learn More</a>
-                </div>
-            </div>
-            <!-- Card 6 -->
-            <div class="swiper-slide card">
-                <div class="card-image">
-                    <img src="{{ water_image }}" alt="Clean Water Projects">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Clean Water for Everyone</h3>
-                    <p class="card-text">Help bring clean and safe drinking water to communities worldwide.</p>
-                    <a href="#" class="btn card-btn">Learn More</a>
-                </div>
-            </div>
-            <!-- Card 7 -->
-            <div class="swiper-slide card">
-                <div class="card-image">
-                    <img src="{{ shelter_image }}" alt="Shelter Support">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Shelter Support</h3>
-                    <p class="card-text">Aid in providing shelter to the homeless and displaced individuals.</p>
-                    <a href="#" class="btn card-btn">Learn More</a>
-                </div>
-            </div>
-            <!-- Card 8 -->
-            <div class="swiper-slide card">
-                <div class="card-image">
-                    <img src="{{ clothes_image }}" alt="Clothing Drives">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Clothing Drives</h3>
-                    <p class="card-text">Donate clothes to help those in need dress with dignity.</p>
-                    <a href="#" class="btn card-btn">Learn More</a>
-                </div>
-            </div>
-            <!-- Card 9 -->
-            <div class="swiper-slide card">
-                <div class="card-image">
-                    <img src="{{ skills_image }}" alt="Skill Development">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Skill Development</h3>
-                    <p class="card-text">Empower individuals by providing training and skill development opportunities.
-                    </p>
-                    <a href="#" class="btn card-btn">Learn More</a>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
     </section>
+
+    <!-- New Section for Individual Aid Requests -->
+    <section class="individual-aid-requests">
+        <div class="container">
+            <h2>Support an Individual Aid Request</h2>
+            {% if aid_requests %}
+            <div class="aid-requests-grid">
+                {% for request in aid_requests %}
+                <div class="aid-request-card">
+                    <h3>{{ request.full_name or 'Anonymous' }}</h3>
+                    <p>{{ request.description }}</p>
+                    <p>Needed: ${{ request.assistance_amount }}</p>
+                    <!-- Progress Bar -->
+                    <div class="progress-bar-container">
+                        {% set progress = (request.current_amount / request.assistance_amount) * 100 %}
+                        {% set red = (255 - progress * 2.55) | round %}
+                        {% set green = (progress * 2.55) | round %}
+                        {% set progress_color = "rgb(" ~ red ~ "," ~ green ~ ",0)" %}
+                        <div class="progress-bar" style="width: {{ progress }}%; background-color: {{ progress_color }};">
+                            <span>{{ request.current_amount }} / {{ request.assistance_amount }}</span>
+                        </div>
+                    </div>
+                    <!-- Donor Impact Feedback -->
+                    <div class="donor-impact">
+                        <h4>Recent Donations</h4>
+                        <ul>
+                            {% set recent_donations = request.donations | sort(attribute='created_at', reverse=true) %}
+                            {% for donation in recent_donations[:5] %}
+                            <li>${{ donation.amount }} by {{ donation.user.username }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Thank You Note (if goal is met) -->
+                    {% if request.current_amount >= request.assistance_amount %}
+                    <div class="thank-you-note">
+                        <p>Thank you to everyone who contributed! Your generosity has made a significant impact. - {{
+                            request.full_name or 'Anonymous' }}</p>
+                    </div>
+                    {% endif %}
+
+                    <form action="{{ url_for('donate_to_aid_request', aid_request_id=request.id) }}" method="POST">
+                        <input type="number" name="amount" placeholder="Donation Amount" required>
+                        <button type="submit" class="btn">Donate to this Request</button>
+                    </form>
+
+                    <!-- Learn More Button -->
+                    <button class="btn learn-more-btn" data-request-id="{{ request.id }}">Learn More</button>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No individual aid requests available for donation at the moment.</p>
+            {% endif %}
+        </div>
+    </section>
 </main>
+
+<!-- Modal for Detailed Information -->
+<div id="aidRequestModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3 id="modal-title"></h3>
+        <p id="modal-description"></p>
+        <p id="modal-summary"></p>
+    </div>
+</div>
 {% endblock %}
 
 {% block extra_js %}
@@ -137,6 +119,65 @@
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
+    });
+
+    // Modal functionality
+    document.querySelectorAll('.learn-more-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const requestId = this.getAttribute('data-request-id');
+            fetch(`/get_aid_request_details/${requestId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('modal-title').innerText = data.full_name || 'Anonymous';
+                    document.getElementById('modal-description').innerText = data.description;
+                    document.getElementById('modal-summary').innerText = data.summary || 'No summary available.';
+                    document.getElementById('aidRequestModal').style.display = 'block';
+                });
+        });
+    });
+
+    document.querySelector('.close').addEventListener('click', function () {
+        document.getElementById('aidRequestModal').style.display = 'none';
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target == document.getElementById('aidRequestModal')) {
+            document.getElementById('aidRequestModal').style.display = 'none';
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var progressBars = document.querySelectorAll('.progress-bar');
+
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function animateProgressBars() {
+            progressBars.forEach(function (bar) {
+                if (isElementInViewport(bar) && bar.style.width === '0%') {
+                    var width = bar.getAttribute('data-progress');
+                    bar.style.width = width;
+                }
+            });
+        }
+
+        // Set the initial width to 0 and set data-progress attribute for animation
+        progressBars.forEach(function (bar) {
+            bar.setAttribute('data-progress', bar.style.width);
+            bar.style.width = '0%';
+        });
+
+        window.addEventListener('scroll', animateProgressBars);
+        window.addEventListener('resize', animateProgressBars);
+        animateProgressBars();  // Trigger animation on page load if in viewport
     });
 </script>
 {% endblock %}

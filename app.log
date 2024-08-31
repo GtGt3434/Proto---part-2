@@ -1,0 +1,415 @@
+2024-08-25 19:17:21,659 WARNING:  * Debugger is active!
+2024-08-25 19:17:21,659 INFO:  * Debugger PIN: 678-595-587
+2024-08-25 19:17:29,526 INFO: SELECT DATABASE()
+2024-08-25 19:17:29,526 INFO: [raw sql] {}
+2024-08-25 19:17:29,708 INFO: SELECT @@sql_mode
+2024-08-25 19:17:29,708 INFO: [raw sql] {}
+2024-08-25 19:17:29,800 INFO: SELECT @@lower_case_table_names
+2024-08-25 19:17:29,800 INFO: [raw sql] {}
+2024-08-25 19:17:29,974 INFO: BEGIN (implicit)
+2024-08-25 19:17:29,988 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:17:29,988 INFO: [generated in 0.00052s] {'pk_1': 32}
+2024-08-25 19:17:30,080 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 19:17:30,080 INFO: [generated in 0.00046s] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 19:17:30,172 INFO: SELECT help_requests.id AS help_requests_id, help_requests.user_id AS help_requests_user_id, help_requests.full_name AS help_requests_full_name, help_requests.age AS help_requests_age, help_requests.gender AS help_requests_gender, help_requests.contact_number AS help_requests_contact_number, help_requests.assistance_type AS help_requests_assistance_type, help_requests.description AS help_requests_description, help_requests.income AS help_requests_income, help_requests.expenses AS help_requests_expenses, help_requests.assistance_amount AS help_requests_assistance_amount, help_requests.created_at AS help_requests_created_at, help_requests.evaluation_status AS help_requests_evaluation_status, help_requests.evaluation_notes AS help_requests_evaluation_notes, help_requests.document_paths AS help_requests_document_paths 
+FROM help_requests 
+WHERE help_requests.user_id = %(user_id_1)s
+2024-08-25 19:17:30,172 INFO: [generated in 0.00045s] {'user_id_1': 32}
+2024-08-25 19:17:30,279 INFO: ROLLBACK
+2024-08-25 19:17:30,458 INFO: 127.0.0.1 - - [25/Aug/2024 19:17:30] "GET /profile HTTP/1.1" 200 -
+2024-08-25 19:17:30,601 INFO: 127.0.0.1 - - [25/Aug/2024 19:17:30] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:17:30,613 INFO: 127.0.0.1 - - [25/Aug/2024 19:17:30] "[36mGET /static/CSS/profile.css HTTP/1.1[0m" 304 -
+2024-08-25 19:17:30,619 INFO: 127.0.0.1 - - [25/Aug/2024 19:17:30] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:20:23,872 INFO:  * Detected change in 'c:\\Users\\Fadi\\OneDrive\\Desktop\\Year3 Semester A\\פרויקט גמאר\\Proto - part 2\\app\\utils.py', reloading
+2024-08-25 19:20:24,765 WARNING:  * Debugger is active!
+2024-08-25 19:20:24,765 INFO:  * Debugger PIN: 678-595-587
+2024-08-25 19:20:33,931 INFO: SELECT DATABASE()
+2024-08-25 19:20:33,931 INFO: [raw sql] {}
+2024-08-25 19:20:34,082 INFO: SELECT @@sql_mode
+2024-08-25 19:20:34,082 INFO: [raw sql] {}
+2024-08-25 19:20:34,181 INFO: SELECT @@lower_case_table_names
+2024-08-25 19:20:34,181 INFO: [raw sql] {}
+2024-08-25 19:20:34,340 INFO: BEGIN (implicit)
+2024-08-25 19:20:34,340 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:20:34,340 INFO: [generated in 0.00045s] {'pk_1': 32}
+2024-08-25 19:20:34,428 INFO: ROLLBACK
+2024-08-25 19:20:34,597 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:34] "[32mGET /profile HTTP/1.1[0m" 302 -
+2024-08-25 19:20:34,612 DEBUG: Starting new HTTPS connection (1): api.unsplash.com:443
+2024-08-25 19:20:35,007 DEBUG: https://api.unsplash.com:443 "GET /photos/random?query=charity&client_id=W6thUP881xTZf8ihtCJVXu6RMIz5PUaLSTQ2L7DmIOw HTTP/11" 200 None
+2024-08-25 19:20:35,012 INFO: BEGIN (implicit)
+2024-08-25 19:20:35,012 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:20:35,012 INFO: [cached since 0.6619s ago] {'pk_1': 32}
+2024-08-25 19:20:35,107 INFO: ROLLBACK
+2024-08-25 19:20:35,277 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:35] "GET /login HTTP/1.1" 200 -
+2024-08-25 19:20:35,426 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:35] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:20:35,427 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:35] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:20:35,428 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:35] "[36mGET /static/CSS/login-styles.css HTTP/1.1[0m" 304 -
+2024-08-25 19:20:38,864 INFO: BEGIN (implicit)
+2024-08-25 19:20:38,865 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 19:20:38,865 INFO: [generated in 0.00029s] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 19:20:40,413 INFO: ROLLBACK
+2024-08-25 19:20:40,578 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:40] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-08-25 19:20:40,588 INFO: BEGIN (implicit)
+2024-08-25 19:20:40,589 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:20:40,589 INFO: [cached since 6.239s ago] {'pk_1': 32}
+2024-08-25 19:20:40,672 INFO: ROLLBACK
+2024-08-25 19:20:40,837 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:40] "GET /verify HTTP/1.1" 200 -
+2024-08-25 19:20:40,880 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:40] "[36mGET /static/CSS/verify.css HTTP/1.1[0m" 304 -
+2024-08-25 19:20:56,289 INFO: BEGIN (implicit)
+2024-08-25 19:20:56,291 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 19:20:56,291 INFO: [cached since 17.43s ago] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 19:20:56,374 INFO: ROLLBACK
+2024-08-25 19:20:56,538 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:56] "[32mPOST /verify HTTP/1.1[0m" 302 -
+2024-08-25 19:20:56,549 INFO: BEGIN (implicit)
+2024-08-25 19:20:56,549 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:20:56,549 INFO: [cached since 22.2s ago] {'pk_1': 32}
+2024-08-25 19:20:56,632 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 19:20:56,632 INFO: [cached since 17.77s ago] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 19:20:56,711 INFO: SELECT help_requests.id AS help_requests_id, help_requests.user_id AS help_requests_user_id, help_requests.full_name AS help_requests_full_name, help_requests.age AS help_requests_age, help_requests.gender AS help_requests_gender, help_requests.contact_number AS help_requests_contact_number, help_requests.assistance_type AS help_requests_assistance_type, help_requests.description AS help_requests_description, help_requests.income AS help_requests_income, help_requests.expenses AS help_requests_expenses, help_requests.assistance_amount AS help_requests_assistance_amount, help_requests.created_at AS help_requests_created_at, help_requests.evaluation_status AS help_requests_evaluation_status, help_requests.evaluation_notes AS help_requests_evaluation_notes, help_requests.document_paths AS help_requests_document_paths 
+FROM help_requests 
+WHERE help_requests.user_id = %(user_id_1)s
+2024-08-25 19:20:56,711 INFO: [generated in 0.00033s] {'user_id_1': 32}
+2024-08-25 19:20:56,805 INFO: ROLLBACK
+2024-08-25 19:20:56,969 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:56] "GET /profile HTTP/1.1" 200 -
+2024-08-25 19:20:57,021 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:57] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:20:57,021 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:57] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:20:57,021 INFO: 127.0.0.1 - - [25/Aug/2024 19:20:57] "[36mGET /static/CSS/profile.css HTTP/1.1[0m" 304 -
+2024-08-25 19:24:51,562 INFO:  * Detected change in 'c:\\Users\\Fadi\\OneDrive\\Desktop\\Year3 Semester A\\פרויקט גמאר\\Proto - part 2\\app\\routes.py', reloading
+2024-08-25 19:24:52,417 WARNING:  * Debugger is active!
+2024-08-25 19:24:52,426 INFO:  * Debugger PIN: 678-595-587
+2024-08-25 19:25:00,602 INFO: SELECT DATABASE()
+2024-08-25 19:25:00,602 INFO: [raw sql] {}
+2024-08-25 19:25:00,775 INFO: SELECT @@sql_mode
+2024-08-25 19:25:00,775 INFO: [raw sql] {}
+2024-08-25 19:25:00,858 INFO: SELECT @@lower_case_table_names
+2024-08-25 19:25:00,858 INFO: [raw sql] {}
+2024-08-25 19:25:01,022 INFO: BEGIN (implicit)
+2024-08-25 19:25:01,024 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:25:01,025 INFO: [generated in 0.00035s] {'pk_1': 32}
+2024-08-25 19:25:01,109 INFO: Access Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDYwMjg1NiwianRpIjoiM2JlZmMwMmItYmFkOS00OTg0LThmM2MtOWYwZDczNGFjMmJjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZhZGlfYWlkIiwibmJmIjoxNzI0NjAyODU2LCJjc3JmIjoiMWQ3OWZlM2ItNGRkMS00MjM4LTgyOTMtNmQ2ZjNjZjBmZWJkIiwiZXhwIjoxNzI0NjAzNzU2fQ.I-7MSG9Q203Mnu7KP7tonyHs7IbZmdlbYIuICNdTgt8
+2024-08-25 19:25:01,109 INFO: Decoded Token: {'fresh': False, 'iat': 1724602856, 'jti': '3befc02b-bad9-4984-8f3c-9f0d734ac2bc', 'type': 'access', 'sub': 'Fadi_aid', 'nbf': 1724602856, 'csrf': '1d79fe3b-4dd1-4238-8293-6d6f3cf0febd', 'exp': 1724603756}
+2024-08-25 19:25:01,110 INFO: Current Username: Fadi_aid
+2024-08-25 19:25:01,111 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 19:25:01,111 INFO: [generated in 0.00023s] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 19:25:01,194 INFO: User Found: <User 32>
+2024-08-25 19:25:01,196 INFO: SELECT help_requests.id AS help_requests_id, help_requests.user_id AS help_requests_user_id, help_requests.full_name AS help_requests_full_name, help_requests.age AS help_requests_age, help_requests.gender AS help_requests_gender, help_requests.contact_number AS help_requests_contact_number, help_requests.assistance_type AS help_requests_assistance_type, help_requests.description AS help_requests_description, help_requests.income AS help_requests_income, help_requests.expenses AS help_requests_expenses, help_requests.assistance_amount AS help_requests_assistance_amount, help_requests.created_at AS help_requests_created_at, help_requests.evaluation_status AS help_requests_evaluation_status, help_requests.evaluation_notes AS help_requests_evaluation_notes, help_requests.document_paths AS help_requests_document_paths 
+FROM help_requests 
+WHERE help_requests.user_id = %(user_id_1)s
+2024-08-25 19:25:01,196 INFO: [generated in 0.00016s] {'user_id_1': 32}
+2024-08-25 19:25:01,279 INFO: Help Requests for user 32: [<HelpRequest 1 - Pending>]
+2024-08-25 19:25:01,292 INFO: ROLLBACK
+2024-08-25 19:25:01,457 INFO: 127.0.0.1 - - [25/Aug/2024 19:25:01] "GET /profile HTTP/1.1" 200 -
+2024-08-25 19:25:01,586 INFO: 127.0.0.1 - - [25/Aug/2024 19:25:01] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:25:01,587 INFO: 127.0.0.1 - - [25/Aug/2024 19:25:01] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:25:01,588 INFO: 127.0.0.1 - - [25/Aug/2024 19:25:01] "[36mGET /static/CSS/profile.css HTTP/1.1[0m" 304 -
+2024-08-25 19:27:55,546 INFO:  * Detected change in 'c:\\Users\\Fadi\\OneDrive\\Desktop\\Year3 Semester A\\פרויקט גמאר\\Proto - part 2\\app\\utils.py', reloading
+2024-08-25 19:27:56,406 WARNING:  * Debugger is active!
+2024-08-25 19:27:56,406 INFO:  * Debugger PIN: 678-595-587
+2024-08-25 19:28:03,712 DEBUG: Starting new HTTPS connection (1): api.unsplash.com:443
+2024-08-25 19:28:04,147 DEBUG: https://api.unsplash.com:443 "GET /photos/random?query=nature&client_id=W6thUP881xTZf8ihtCJVXu6RMIz5PUaLSTQ2L7DmIOw HTTP/11" 200 None
+2024-08-25 19:28:04,172 DEBUG: Starting new HTTPS connection (1): api.unsplash.com:443
+2024-08-25 19:28:04,505 DEBUG: https://api.unsplash.com:443 "GET /photos/random?query=charity&client_id=W6thUP881xTZf8ihtCJVXu6RMIz5PUaLSTQ2L7DmIOw HTTP/11" 200 None
+2024-08-25 19:28:04,506 DEBUG: Starting new HTTPS connection (1): api.unsplash.com:443
+2024-08-25 19:28:04,910 DEBUG: https://api.unsplash.com:443 "GET /photos/random?query=volunteer&client_id=W6thUP881xTZf8ihtCJVXu6RMIz5PUaLSTQ2L7DmIOw HTTP/11" 200 None
+2024-08-25 19:28:04,913 DEBUG: Starting new HTTPS connection (1): api.unsplash.com:443
+2024-08-25 19:28:05,255 DEBUG: https://api.unsplash.com:443 "GET /photos/random?query=community&client_id=W6thUP881xTZf8ihtCJVXu6RMIz5PUaLSTQ2L7DmIOw HTTP/11" 200 None
+2024-08-25 19:28:07,154 INFO: SELECT DATABASE()
+2024-08-25 19:28:07,154 INFO: [raw sql] {}
+2024-08-25 19:28:07,318 INFO: SELECT @@sql_mode
+2024-08-25 19:28:07,318 INFO: [raw sql] {}
+2024-08-25 19:28:07,400 INFO: SELECT @@lower_case_table_names
+2024-08-25 19:28:07,401 INFO: [raw sql] {}
+2024-08-25 19:28:07,567 INFO: BEGIN (implicit)
+2024-08-25 19:28:07,571 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:28:07,571 INFO: [generated in 0.00046s] {'pk_1': 32}
+2024-08-25 19:28:07,669 INFO: ROLLBACK
+2024-08-25 19:28:07,833 INFO: 127.0.0.1 - - [25/Aug/2024 19:28:07] "GET / HTTP/1.1" 200 -
+2024-08-25 19:28:07,988 INFO: 127.0.0.1 - - [25/Aug/2024 19:28:07] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:28:07,988 INFO: 127.0.0.1 - - [25/Aug/2024 19:28:07] "[36mGET /static/CSS/styles.css HTTP/1.1[0m" 304 -
+2024-08-25 19:28:07,990 INFO: 127.0.0.1 - - [25/Aug/2024 19:28:07] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:28:13,841 INFO: BEGIN (implicit)
+2024-08-25 19:28:13,842 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:28:13,842 INFO: [cached since 6.271s ago] {'pk_1': 32}
+2024-08-25 19:28:13,925 INFO: Access Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDYwMjg1NiwianRpIjoiM2JlZmMwMmItYmFkOS00OTg0LThmM2MtOWYwZDczNGFjMmJjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZhZGlfYWlkIiwibmJmIjoxNzI0NjAyODU2LCJjc3JmIjoiMWQ3OWZlM2ItNGRkMS00MjM4LTgyOTMtNmQ2ZjNjZjBmZWJkIiwiZXhwIjoxNzI0NjAzNzU2fQ.I-7MSG9Q203Mnu7KP7tonyHs7IbZmdlbYIuICNdTgt8
+2024-08-25 19:28:13,925 INFO: Decoded Token: {'fresh': False, 'iat': 1724602856, 'jti': '3befc02b-bad9-4984-8f3c-9f0d734ac2bc', 'type': 'access', 'sub': 'Fadi_aid', 'nbf': 1724602856, 'csrf': '1d79fe3b-4dd1-4238-8293-6d6f3cf0febd', 'exp': 1724603756}
+2024-08-25 19:28:13,925 INFO: Current Username: Fadi_aid
+2024-08-25 19:28:13,926 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 19:28:13,926 INFO: [generated in 0.00017s] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 19:28:14,010 INFO: User Found: <User 32>
+2024-08-25 19:28:14,014 INFO: SELECT help_requests.id AS help_requests_id, help_requests.user_id AS help_requests_user_id, help_requests.full_name AS help_requests_full_name, help_requests.age AS help_requests_age, help_requests.gender AS help_requests_gender, help_requests.contact_number AS help_requests_contact_number, help_requests.assistance_type AS help_requests_assistance_type, help_requests.description AS help_requests_description, help_requests.income AS help_requests_income, help_requests.expenses AS help_requests_expenses, help_requests.assistance_amount AS help_requests_assistance_amount, help_requests.created_at AS help_requests_created_at, help_requests.evaluation_status AS help_requests_evaluation_status, help_requests.evaluation_notes AS help_requests_evaluation_notes, help_requests.document_paths AS help_requests_document_paths 
+FROM help_requests 
+WHERE help_requests.user_id = %(user_id_1)s
+2024-08-25 19:28:14,014 INFO: [generated in 0.00042s] {'user_id_1': 32}
+2024-08-25 19:28:14,099 INFO: Help Requests for user 32: [<HelpRequest 1 - Pending>]
+2024-08-25 19:28:14,114 INFO: ROLLBACK
+2024-08-25 19:28:14,278 INFO: 127.0.0.1 - - [25/Aug/2024 19:28:14] "GET /profile HTTP/1.1" 200 -
+2024-08-25 19:28:14,336 INFO: 127.0.0.1 - - [25/Aug/2024 19:28:14] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:28:14,345 INFO: 127.0.0.1 - - [25/Aug/2024 19:28:14] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:28:14,346 INFO: 127.0.0.1 - - [25/Aug/2024 19:28:14] "[36mGET /static/CSS/profile.css HTTP/1.1[0m" 304 -
+2024-08-25 19:32:29,898 INFO:  * Detected change in 'c:\\Users\\Fadi\\OneDrive\\Desktop\\Year3 Semester A\\פרויקט גמאר\\Proto - part 2\\app\\utils.py', reloading
+2024-08-25 19:32:30,887 WARNING:  * Debugger is active!
+2024-08-25 19:32:30,893 INFO:  * Debugger PIN: 678-595-587
+2024-08-25 19:32:37,043 INFO: SELECT DATABASE()
+2024-08-25 19:32:37,043 INFO: [raw sql] {}
+2024-08-25 19:32:37,203 INFO: SELECT @@sql_mode
+2024-08-25 19:32:37,203 INFO: [raw sql] {}
+2024-08-25 19:32:37,283 INFO: SELECT @@lower_case_table_names
+2024-08-25 19:32:37,283 INFO: [raw sql] {}
+2024-08-25 19:32:37,437 INFO: BEGIN (implicit)
+2024-08-25 19:32:37,437 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:32:37,437 INFO: [generated in 0.00017s] {'pk_1': 32}
+2024-08-25 19:32:37,539 INFO: ROLLBACK
+2024-08-25 19:32:37,692 INFO: 127.0.0.1 - - [25/Aug/2024 19:32:37] "GET /assistance HTTP/1.1" 200 -
+2024-08-25 19:32:37,860 INFO: 127.0.0.1 - - [25/Aug/2024 19:32:37] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:32:37,880 INFO: 127.0.0.1 - - [25/Aug/2024 19:32:37] "[36mGET /static/CSS/styles.css HTTP/1.1[0m" 304 -
+2024-08-25 19:32:37,881 INFO: 127.0.0.1 - - [25/Aug/2024 19:32:37] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:32:37,881 INFO: 127.0.0.1 - - [25/Aug/2024 19:32:37] "[36mGET /static/CSS/assistance-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:32:42,048 INFO: BEGIN (implicit)
+2024-08-25 19:32:42,048 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:32:42,048 INFO: [cached since 4.605s ago] {'pk_1': 32}
+2024-08-25 19:32:42,125 INFO: Access Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDYwMjg1NiwianRpIjoiM2JlZmMwMmItYmFkOS00OTg0LThmM2MtOWYwZDczNGFjMmJjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZhZGlfYWlkIiwibmJmIjoxNzI0NjAyODU2LCJjc3JmIjoiMWQ3OWZlM2ItNGRkMS00MjM4LTgyOTMtNmQ2ZjNjZjBmZWJkIiwiZXhwIjoxNzI0NjAzNzU2fQ.I-7MSG9Q203Mnu7KP7tonyHs7IbZmdlbYIuICNdTgt8
+2024-08-25 19:32:42,125 INFO: Decoded Token: {'fresh': False, 'iat': 1724602856, 'jti': '3befc02b-bad9-4984-8f3c-9f0d734ac2bc', 'type': 'access', 'sub': 'Fadi_aid', 'nbf': 1724602856, 'csrf': '1d79fe3b-4dd1-4238-8293-6d6f3cf0febd', 'exp': 1724603756}
+2024-08-25 19:32:42,125 INFO: Current Username: Fadi_aid
+2024-08-25 19:32:42,134 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 19:32:42,134 INFO: [generated in 0.00042s] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 19:32:42,209 INFO: User Found: <User 32>
+2024-08-25 19:32:42,209 INFO: SELECT help_requests.id AS help_requests_id, help_requests.user_id AS help_requests_user_id, help_requests.full_name AS help_requests_full_name, help_requests.age AS help_requests_age, help_requests.gender AS help_requests_gender, help_requests.contact_number AS help_requests_contact_number, help_requests.assistance_type AS help_requests_assistance_type, help_requests.description AS help_requests_description, help_requests.income AS help_requests_income, help_requests.expenses AS help_requests_expenses, help_requests.assistance_amount AS help_requests_assistance_amount, help_requests.created_at AS help_requests_created_at, help_requests.evaluation_status AS help_requests_evaluation_status, help_requests.evaluation_notes AS help_requests_evaluation_notes, help_requests.document_paths AS help_requests_document_paths 
+FROM help_requests 
+WHERE help_requests.user_id = %(user_id_1)s
+2024-08-25 19:32:42,209 INFO: [generated in 0.00031s] {'user_id_1': 32}
+2024-08-25 19:32:42,297 INFO: Help Requests for user 32: [<HelpRequest 1 - Pending>]
+2024-08-25 19:32:42,304 INFO: ROLLBACK
+2024-08-25 19:32:42,460 INFO: 127.0.0.1 - - [25/Aug/2024 19:32:42] "GET /profile HTTP/1.1" 200 -
+2024-08-25 19:32:42,491 INFO: 127.0.0.1 - - [25/Aug/2024 19:32:42] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:32:42,503 INFO: 127.0.0.1 - - [25/Aug/2024 19:32:42] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:32:42,503 INFO: 127.0.0.1 - - [25/Aug/2024 19:32:42] "[36mGET /static/CSS/profile.css HTTP/1.1[0m" 304 -
+2024-08-25 19:34:28,923 INFO:  * Detected change in 'c:\\Users\\Fadi\\OneDrive\\Desktop\\Year3 Semester A\\פרויקט גמאר\\Proto - part 2\\app\\routes.py', reloading
+2024-08-25 19:34:29,773 WARNING:  * Debugger is active!
+2024-08-25 19:34:29,773 INFO:  * Debugger PIN: 678-595-587
+2024-08-25 19:34:36,693 INFO: SELECT DATABASE()
+2024-08-25 19:34:36,694 INFO: [raw sql] {}
+2024-08-25 19:34:36,858 INFO: SELECT @@sql_mode
+2024-08-25 19:34:36,858 INFO: [raw sql] {}
+2024-08-25 19:34:36,941 INFO: SELECT @@lower_case_table_names
+2024-08-25 19:34:36,941 INFO: [raw sql] {}
+2024-08-25 19:34:37,103 INFO: BEGIN (implicit)
+2024-08-25 19:34:37,107 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:34:37,107 INFO: [generated in 0.00045s] {'pk_1': 32}
+2024-08-25 19:34:37,214 INFO: ROLLBACK
+2024-08-25 19:34:37,386 INFO: 127.0.0.1 - - [25/Aug/2024 19:34:37] "GET /assistance HTTP/1.1" 200 -
+2024-08-25 19:34:37,725 INFO: 127.0.0.1 - - [25/Aug/2024 19:34:37] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:34:37,740 INFO: 127.0.0.1 - - [25/Aug/2024 19:34:37] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:34:37,743 INFO: 127.0.0.1 - - [25/Aug/2024 19:34:37] "[36mGET /static/CSS/styles.css HTTP/1.1[0m" 304 -
+2024-08-25 19:34:37,807 INFO: 127.0.0.1 - - [25/Aug/2024 19:34:37] "[36mGET /static/CSS/assistance-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:34:40,833 INFO: BEGIN (implicit)
+2024-08-25 19:34:40,835 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 19:34:40,835 INFO: [cached since 3.729s ago] {'pk_1': 32}
+2024-08-25 19:34:40,919 INFO: Access Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDYwMjg1NiwianRpIjoiM2JlZmMwMmItYmFkOS00OTg0LThmM2MtOWYwZDczNGFjMmJjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZhZGlfYWlkIiwibmJmIjoxNzI0NjAyODU2LCJjc3JmIjoiMWQ3OWZlM2ItNGRkMS00MjM4LTgyOTMtNmQ2ZjNjZjBmZWJkIiwiZXhwIjoxNzI0NjAzNzU2fQ.I-7MSG9Q203Mnu7KP7tonyHs7IbZmdlbYIuICNdTgt8
+2024-08-25 19:34:40,919 INFO: Decoded Token: {'fresh': False, 'iat': 1724602856, 'jti': '3befc02b-bad9-4984-8f3c-9f0d734ac2bc', 'type': 'access', 'sub': 'Fadi_aid', 'nbf': 1724602856, 'csrf': '1d79fe3b-4dd1-4238-8293-6d6f3cf0febd', 'exp': 1724603756}
+2024-08-25 19:34:40,919 INFO: Current Username: Fadi_aid
+2024-08-25 19:34:40,922 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 19:34:40,922 INFO: [generated in 0.00035s] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 19:34:41,006 INFO: User Found: <User 32>
+2024-08-25 19:34:41,009 INFO: SELECT help_requests.id AS help_requests_id, help_requests.user_id AS help_requests_user_id, help_requests.full_name AS help_requests_full_name, help_requests.age AS help_requests_age, help_requests.gender AS help_requests_gender, help_requests.contact_number AS help_requests_contact_number, help_requests.assistance_type AS help_requests_assistance_type, help_requests.description AS help_requests_description, help_requests.income AS help_requests_income, help_requests.expenses AS help_requests_expenses, help_requests.assistance_amount AS help_requests_assistance_amount, help_requests.created_at AS help_requests_created_at, help_requests.evaluation_status AS help_requests_evaluation_status, help_requests.evaluation_notes AS help_requests_evaluation_notes, help_requests.document_paths AS help_requests_document_paths 
+FROM help_requests 
+WHERE help_requests.user_id = %(user_id_1)s
+2024-08-25 19:34:41,010 INFO: [generated in 0.00044s] {'user_id_1': 32}
+2024-08-25 19:34:41,092 INFO: Help Requests for user 32: [<HelpRequest 1 - Pending>]
+2024-08-25 19:34:41,112 INFO: ROLLBACK
+2024-08-25 19:34:41,274 INFO: 127.0.0.1 - - [25/Aug/2024 19:34:41] "GET /profile HTTP/1.1" 200 -
+2024-08-25 19:34:41,314 INFO: 127.0.0.1 - - [25/Aug/2024 19:34:41] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:34:41,314 INFO: 127.0.0.1 - - [25/Aug/2024 19:34:41] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 19:34:41,314 INFO: 127.0.0.1 - - [25/Aug/2024 19:34:41] "[36mGET /static/CSS/profile.css HTTP/1.1[0m" 304 -
+2024-08-25 22:32:27,446 INFO:  * Detected change in 'c:\\Users\\Fadi\\OneDrive\\Desktop\\Year3 Semester A\\פרויקט גמאר\\Proto - part 2\\app\\routes.py', reloading
+2024-08-25 22:32:28,336 WARNING:  * Debugger is active!
+2024-08-25 22:32:28,336 INFO:  * Debugger PIN: 678-595-587
+2024-08-25 22:32:39,425 INFO: SELECT DATABASE()
+2024-08-25 22:32:39,425 INFO: [raw sql] {}
+2024-08-25 22:32:39,606 INFO: SELECT @@sql_mode
+2024-08-25 22:32:39,606 INFO: [raw sql] {}
+2024-08-25 22:32:39,692 INFO: SELECT @@lower_case_table_names
+2024-08-25 22:32:39,692 INFO: [raw sql] {}
+2024-08-25 22:32:39,942 INFO: BEGIN (implicit)
+2024-08-25 22:32:39,944 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 22:32:39,945 INFO: [generated in 0.00024s] {'pk_1': 32}
+2024-08-25 22:32:40,029 INFO: Access Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDYwMjg1NiwianRpIjoiM2JlZmMwMmItYmFkOS00OTg0LThmM2MtOWYwZDczNGFjMmJjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZhZGlfYWlkIiwibmJmIjoxNzI0NjAyODU2LCJjc3JmIjoiMWQ3OWZlM2ItNGRkMS00MjM4LTgyOTMtNmQ2ZjNjZjBmZWJkIiwiZXhwIjoxNzI0NjAzNzU2fQ.I-7MSG9Q203Mnu7KP7tonyHs7IbZmdlbYIuICNdTgt8
+2024-08-25 22:32:40,030 ERROR: Error decoding token: Signature has expired
+Traceback (most recent call last):
+  File "c:\Users\Fadi\OneDrive\Desktop\Year3 Semester A\פרויקט גמאר\Proto - part 2\app\routes.py", line 115, in profile
+    decoded_token = decode_token(access_token)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadi\AppData\Roaming\Python\Python312\site-packages\flask_jwt_extended\utils.py", line 128, in decode_token
+    return jwt_manager._decode_jwt_from_config(encoded_token, csrf_value, allow_expired)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadi\AppData\Roaming\Python\Python312\site-packages\flask_jwt_extended\jwt_manager.py", line 556, in _decode_jwt_from_config
+    return _decode_jwt(**kwargs, allow_expired=allow_expired)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadi\AppData\Roaming\Python\Python312\site-packages\flask_jwt_extended\tokens.py", line 95, in _decode_jwt
+    decoded_token = jwt.decode(
+                    ^^^^^^^^^^^
+  File "C:\Users\Fadi\AppData\Roaming\Python\Python312\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fadi\AppData\Roaming\Python\Python312\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\Users\Fadi\AppData\Roaming\Python\Python312\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\Users\Fadi\AppData\Roaming\Python\Python312\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+2024-08-25 22:32:40,064 INFO: ROLLBACK
+2024-08-25 22:32:40,286 INFO: 127.0.0.1 - - [25/Aug/2024 22:32:40] "[32mGET /profile HTTP/1.1[0m" 302 -
+2024-08-25 22:32:40,293 DEBUG: Starting new HTTPS connection (1): api.unsplash.com:443
+2024-08-25 22:32:40,851 DEBUG: https://api.unsplash.com:443 "GET /photos/random?query=charity&client_id=W6thUP881xTZf8ihtCJVXu6RMIz5PUaLSTQ2L7DmIOw HTTP/11" 200 None
+2024-08-25 22:32:40,857 INFO: BEGIN (implicit)
+2024-08-25 22:32:40,857 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 22:32:40,858 INFO: [cached since 0.9127s ago] {'pk_1': 32}
+2024-08-25 22:32:40,987 INFO: ROLLBACK
+2024-08-25 22:32:41,183 INFO: 127.0.0.1 - - [25/Aug/2024 22:32:41] "GET /login HTTP/1.1" 200 -
+2024-08-25 22:32:41,411 INFO: 127.0.0.1 - - [25/Aug/2024 22:32:41] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 22:32:41,421 INFO: 127.0.0.1 - - [25/Aug/2024 22:32:41] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 22:32:41,422 INFO: 127.0.0.1 - - [25/Aug/2024 22:32:41] "[36mGET /static/CSS/login-styles.css HTTP/1.1[0m" 304 -
+2024-08-25 22:32:43,454 INFO: BEGIN (implicit)
+2024-08-25 22:32:43,455 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 22:32:43,457 INFO: [generated in 0.00035s] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 22:32:45,299 INFO: ROLLBACK
+2024-08-25 22:32:45,473 INFO: 127.0.0.1 - - [25/Aug/2024 22:32:45] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-08-25 22:32:45,483 INFO: BEGIN (implicit)
+2024-08-25 22:32:45,483 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 22:32:45,483 INFO: [cached since 5.539s ago] {'pk_1': 32}
+2024-08-25 22:32:45,569 INFO: ROLLBACK
+2024-08-25 22:32:45,736 INFO: 127.0.0.1 - - [25/Aug/2024 22:32:45] "GET /verify HTTP/1.1" 200 -
+2024-08-25 22:32:45,785 INFO: 127.0.0.1 - - [25/Aug/2024 22:32:45] "[36mGET /static/CSS/verify.css HTTP/1.1[0m" 304 -
+2024-08-25 22:33:12,625 INFO: BEGIN (implicit)
+2024-08-25 22:33:12,625 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 22:33:12,625 INFO: [cached since 29.17s ago] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 22:33:13,999 INFO: ROLLBACK
+2024-08-25 22:33:14,168 INFO: 127.0.0.1 - - [25/Aug/2024 22:33:14] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-08-25 22:33:14,180 INFO: BEGIN (implicit)
+2024-08-25 22:33:14,180 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 22:33:14,180 INFO: [cached since 34.24s ago] {'pk_1': 32}
+2024-08-25 22:33:14,266 INFO: ROLLBACK
+2024-08-25 22:33:14,434 INFO: 127.0.0.1 - - [25/Aug/2024 22:33:14] "GET /verify HTTP/1.1" 200 -
+2024-08-25 22:33:14,477 INFO: 127.0.0.1 - - [25/Aug/2024 22:33:14] "[36mGET /static/CSS/verify.css HTTP/1.1[0m" 304 -
+2024-08-25 22:33:26,643 INFO: BEGIN (implicit)
+2024-08-25 22:33:26,644 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 22:33:26,644 INFO: [cached since 43.19s ago] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 22:33:26,730 INFO: ROLLBACK
+2024-08-25 22:33:26,898 INFO: 127.0.0.1 - - [25/Aug/2024 22:33:26] "[32mPOST /verify HTTP/1.1[0m" 302 -
+2024-08-25 22:33:26,907 INFO: BEGIN (implicit)
+2024-08-25 22:33:26,908 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 22:33:26,908 INFO: [cached since 46.96s ago] {'pk_1': 32}
+2024-08-25 22:33:26,990 INFO: Access Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDYxNDQwNiwianRpIjoiYmM3ODdjYTctYzg2Yy00YTk1LTliOTUtMzdhM2YxMGIzMGVjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZhZGlfYWlkIiwibmJmIjoxNzI0NjE0NDA2LCJjc3JmIjoiNTI2OTEzYmEtNzgxYS00MmRjLWEzMjUtZmMxNDNlZGFmM2JiIiwiZXhwIjoxNzI0NjE1MzA2fQ.u7dr1GO7lqIkeecGWX1XmKTZo7X2-OpGZ5e7WiThz84
+2024-08-25 22:33:26,990 INFO: Decoded Token: {'fresh': False, 'iat': 1724614406, 'jti': 'bc787ca7-c86c-4a95-9b95-37a3f10b30ec', 'type': 'access', 'sub': 'Fadi_aid', 'nbf': 1724614406, 'csrf': '526913ba-781a-42dc-a325-fc143edaf3bb', 'exp': 1724615306}
+2024-08-25 22:33:26,990 INFO: Current Username: Fadi_aid
+2024-08-25 22:33:26,990 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 22:33:26,991 INFO: [cached since 43.53s ago] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 22:33:27,075 INFO: User Found: <User 32>
+2024-08-25 22:33:27,076 INFO: SELECT help_requests.id AS help_requests_id, help_requests.user_id AS help_requests_user_id, help_requests.full_name AS help_requests_full_name, help_requests.age AS help_requests_age, help_requests.gender AS help_requests_gender, help_requests.contact_number AS help_requests_contact_number, help_requests.assistance_type AS help_requests_assistance_type, help_requests.description AS help_requests_description, help_requests.income AS help_requests_income, help_requests.expenses AS help_requests_expenses, help_requests.assistance_amount AS help_requests_assistance_amount, help_requests.created_at AS help_requests_created_at, help_requests.evaluation_status AS help_requests_evaluation_status, help_requests.evaluation_notes AS help_requests_evaluation_notes, help_requests.document_paths AS help_requests_document_paths 
+FROM help_requests 
+WHERE help_requests.user_id = %(user_id_1)s
+2024-08-25 22:33:27,077 INFO: [generated in 0.00024s] {'user_id_1': 32}
+2024-08-25 22:33:27,161 INFO: Help Requests for user 32: [<HelpRequest 1 - Pending>]
+2024-08-25 22:33:27,168 INFO: ROLLBACK
+2024-08-25 22:33:27,334 INFO: 127.0.0.1 - - [25/Aug/2024 22:33:27] "GET /profile HTTP/1.1" 200 -
+2024-08-25 22:33:27,379 INFO: 127.0.0.1 - - [25/Aug/2024 22:33:27] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 22:33:27,381 INFO: 127.0.0.1 - - [25/Aug/2024 22:33:27] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 22:33:27,382 INFO: 127.0.0.1 - - [25/Aug/2024 22:33:27] "[36mGET /static/CSS/profile.css HTTP/1.1[0m" 304 -
+2024-08-25 22:34:19,509 INFO: BEGIN (implicit)
+2024-08-25 22:34:19,509 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.id = %(pk_1)s
+2024-08-25 22:34:19,510 INFO: [cached since 99.56s ago] {'pk_1': 32}
+2024-08-25 22:34:19,598 INFO: Access Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDYxNDQwNiwianRpIjoiYmM3ODdjYTctYzg2Yy00YTk1LTliOTUtMzdhM2YxMGIzMGVjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZhZGlfYWlkIiwibmJmIjoxNzI0NjE0NDA2LCJjc3JmIjoiNTI2OTEzYmEtNzgxYS00MmRjLWEzMjUtZmMxNDNlZGFmM2JiIiwiZXhwIjoxNzI0NjE1MzA2fQ.u7dr1GO7lqIkeecGWX1XmKTZo7X2-OpGZ5e7WiThz84
+2024-08-25 22:34:19,598 INFO: Decoded Token: {'fresh': False, 'iat': 1724614406, 'jti': 'bc787ca7-c86c-4a95-9b95-37a3f10b30ec', 'type': 'access', 'sub': 'Fadi_aid', 'nbf': 1724614406, 'csrf': '526913ba-781a-42dc-a325-fc143edaf3bb', 'exp': 1724615306}
+2024-08-25 22:34:19,598 INFO: Current Username: Fadi_aid
+2024-08-25 22:34:19,599 INFO: SELECT users.id AS users_id, users.username AS users_username, users.email AS users_email, users.password_hash AS users_password_hash, users.`role` AS users_role, users.created_at AS users_created_at 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s
+2024-08-25 22:34:19,599 INFO: [cached since 96.14s ago] {'username_1': 'Fadi_aid', 'param_1': 1}
+2024-08-25 22:34:19,681 INFO: User Found: <User 32>
+2024-08-25 22:34:19,682 INFO: SELECT help_requests.id AS help_requests_id, help_requests.user_id AS help_requests_user_id, help_requests.full_name AS help_requests_full_name, help_requests.age AS help_requests_age, help_requests.gender AS help_requests_gender, help_requests.contact_number AS help_requests_contact_number, help_requests.assistance_type AS help_requests_assistance_type, help_requests.description AS help_requests_description, help_requests.income AS help_requests_income, help_requests.expenses AS help_requests_expenses, help_requests.assistance_amount AS help_requests_assistance_amount, help_requests.created_at AS help_requests_created_at, help_requests.evaluation_status AS help_requests_evaluation_status, help_requests.evaluation_notes AS help_requests_evaluation_notes, help_requests.document_paths AS help_requests_document_paths 
+FROM help_requests 
+WHERE help_requests.user_id = %(user_id_1)s
+2024-08-25 22:34:19,682 INFO: [cached since 52.61s ago] {'user_id_1': 32}
+2024-08-25 22:34:19,767 INFO: Help Requests for user 32: [<HelpRequest 1 - Pending>]
+2024-08-25 22:34:19,767 INFO: ROLLBACK
+2024-08-25 22:34:19,932 INFO: 127.0.0.1 - - [25/Aug/2024 22:34:19] "GET /profile HTTP/1.1" 200 -
+2024-08-25 22:34:19,975 INFO: 127.0.0.1 - - [25/Aug/2024 22:34:19] "[36mGET /static/CSS/footer-style.css HTTP/1.1[0m" 304 -
+2024-08-25 22:34:19,975 INFO: 127.0.0.1 - - [25/Aug/2024 22:34:19] "[36mGET /static/CSS/profile.css HTTP/1.1[0m" 304 -
+2024-08-25 22:34:19,975 INFO: 127.0.0.1 - - [25/Aug/2024 22:34:19] "[36mGET /static/CSS/nav-style.css HTTP/1.1[0m" 304 -
+2024-08-25 22:35:33,607 INFO:  * Detected change in 'c:\\Users\\Fadi\\OneDrive\\Desktop\\Year3 Semester A\\פרויקט גמאר\\Proto - part 2\\app\\routes.py', reloading
+2024-08-25 22:35:34,454 WARNING:  * Debugger is active!
+2024-08-25 22:35:34,460 INFO:  * Debugger PIN: 678-595-587
+2024-08-25 22:36:22,343 INFO:  * Detected change in 'c:\\Users\\Fadi\\OneDrive\\Desktop\\Year3 Semester A\\פרויקט גמאר\\Proto - part 2\\app\\__init__.py', reloading

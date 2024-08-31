@@ -7,12 +7,11 @@
 
 /* Body styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #b1b1b1;
-    /* Light gray background */
+    background-color: #f0f0f0;
+    color: #333;
 }
-
 
 header h1 {
     margin-bottom: 10px;
@@ -24,10 +23,8 @@ header h1 {
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
-    /* White background */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Shadow effect */
 }
 
 /* Section styles */
@@ -37,20 +34,94 @@ section {
 
 section h2 {
     margin-bottom: 15px;
+    color: #007bff;
+    font-size: 24px;
 }
 
-/* Profile info styles */
+/* Volunteer report styles */
+.volunteer-report {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+.volunteer-report h3 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 20px;
+}
+
+.volunteer-report p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    padding-left: 15px;
+    /* Add left padding for more spacing */
+}
+
+.volunteer-report h4 {
+    margin-top: 20px;
+    /* Add margin to create space between elements */
+}
+
+/* Enhance the spacing between button and opportunities list */
+button {
+    margin-bottom: 20px;
+    /* Add bottom margin to separate button from the list */
+}
+
+/* Enhance the spacing for signed-up opportunities list */
+.opportunities-list li {
+    margin-bottom: 15px;
+    /* Add more spacing between list items */
+    padding-left: 15px;
+    /* Add left padding for more spacing */
+}
+
+.opportunities-list,
+.donations-list,
+.help-requests-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.opportunities-list li,
+.donations-list li,
+.help-requests-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* Button styles */
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
 .profile-info {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .profile-picture {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     overflow: hidden;
     margin-right: 20px;
+    border: 2px solid #ddd;
 }
 
 .profile-picture img {
@@ -61,31 +132,217 @@ section h2 {
 
 .user-details p {
     margin-bottom: 10px;
-}
-
-/* Button styles */
-button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    /* Blue button */
-    color: #fff;
-    /* White text */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-    /* Darker blue on hover */
+    font-size: 16px;
 }
 
 /* Footer styles */
 footer {
     background-color: #343a40;
-    /* Dark gray footer */
     color: #fff;
-    /* White text */
     text-align: center;
     padding: 20px;
+}
+
+/* Badge styles for status */
+.badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.badge.success {
+    background-color: green;
+    color: white;
+}
+
+.badge.warning {
+    background-color: red;
+    color: white;
+}
+
+.badge.info {
+    background-color: orange;
+    color: white;
+}
+
+/* Progress bar container styles for aid seekers */
+.aid-seeker-progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    margin-top: 10px;
+    height: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Progress bar styles for aid seekers */
+.aid-seeker-progress-bar {
+    height: 100%;
+    border-radius: 12px;
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Progress bar container styles for volunteer hours */
+.volunteer-progress-bar-container {
+    width: 80%;
+    /* Adjust the width to make it shorter */
+    max-width: 600px;
+    /* Set a maximum width */
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    margin-top: 10px;
+    height: 15px;
+    /* Adjust height for a slimmer bar */
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 15px;
+    /* Add some space below each bar */
+}
+
+/* Progress bar styles for volunteer hours */
+.volunteer-progress-bar {
+    height: 100%;
+    border-radius: 12px;
+    transition: width 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #4caf50;
+    /* Default color */
+}
+
+/* Icon progress bar container styles */
+.icon-progress-bar {
+    display: flex;
+    align-items: center;
+}
+
+/* Optional: Adjust the label positions if needed */
+.volunteer-progress-bar span {
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-weight: bold;
+}
+
+/* Volunteer Hours Form styles */
+.volunteer-hours-form {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+
+.volunteer-hours-form div {
+    margin-bottom: 10px;
+}
+
+.volunteer-hours-form input[type="number"],
+.volunteer-hours-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.volunteer-hours-form textarea {
+    height: 80px;
+    /* Set a fixed height */
+    resize: vertical;
+    /* Allow vertical resizing */
+}
+
+.volunteer-hours-form button {
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.volunteer-hours-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Progress bar container */
+.progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    margin-top: 10px;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Progress bar */
+.progress-bar {
+    height: 100%;
+    border-radius: 12px;
+    transition: width 1.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    font-weight: bold;
+    padding-left: 10px;
+    background: linear-gradient(to right, #007bff, #00d4ff);
+    position: relative;
+}
+
+/* Milestone text inside the progress bar */
+.milestone-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    transition: color 0.3s ease, background-color 0.3s ease, left 0.3s ease;
+}
+
+/* Adjust position for low percentages */
+.progress-bar-container[data-percentage="low"] .milestone-text {
+    left: 35px;
+    /* Position text slightly outside for better visibility */
+    transform: translateX(0);
+    /* Remove centering */
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 3px 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive font size for milestone text */
+@media (max-width: 768px) {
+    .milestone-text {
+        font-size: 12px;
+    }
 }

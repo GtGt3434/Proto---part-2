@@ -10,27 +10,109 @@
     <title>Charity Platform - Home</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="../../static/CSS/footer-style.css">
-    <link rel="stylesheet" href="../../static/CSS/nav-style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/footer-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/nav-style.css') }}">
     {% block extra_css %}{% endblock %}
+    <style>
+        .flash-messages {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .flash-message {
+            padding: 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .flash-message.info {
+            background-color: #17a2b8;
+        }
+
+        .flash-message.success {
+            background-color: #28a745;
+        }
+
+        .flash-message.warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .flash-message.error {
+            background-color: #dc3545;
+        }
+
+        .flash-message.danger {
+            background-color: #d9534f; 
+        }
+        .flash-message.message {
+            background-color: #007bff; /* or any color you prefer */
+}
+    </style>
 </head>
 
 <body>
+    <!-- Flash messages section -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for category, message in messages %}
+        <div class="flash-message {{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
     <header>
         <nav class="navbar" id="navbar">
             <div class="nav-container">
                 <a href="{{ url_for('index') }}" class="logo">Charity Platform</a>
                 <ul class="nav-links">
-                    <li><a class="{{ 'active' if request.path == url_for('index') else '' }}" href="{{ url_for('index') }}"><i
-                                class="fa fa-home"></i> Home</a></li>
-                    <li><a class="{{ 'active' if request.path == url_for('donation') else '' }}" href="{{ url_for('donation') }}"><i
-                                class="fa fa-hand-holding-heart"></i> Donate</a></li>
-                    <li><a class="{{ 'active' if request.path == url_for('assistance') else '' }}" href="{{ url_for('assistance') }}"><i
-                                class="fa fa-hands-helping"></i> Request Assistance</a></li>
-                    <li><a class="{{ 'active' if request.path == url_for('volunteer') else '' }}" href="{{ url_for('volunteer') }}"><i
-                                class="fa fa-users"></i> Volunteer</a></li>
-                    <li><a class="{{ 'active' if request.path == url_for('login') else '' }}" href="{{ url_for('login') }}"><i
-                                class="fa fa-sign-in-alt"></i> Login</a></li>
+                    <li><a class="{{ 'active' if request.path == url_for('index') else '' }}"
+                            href="{{ url_for('index') }}">
+                            <i class="fa fa-home"></i> Home</a></li>
+                    {% if current_user.is_authenticated %}
+                    {% if current_user.role == 'donor' %}
+                    <li><a class="{{ 'active' if request.path.startswith('/donation') else '' }}" 
+                            href="{{ url_for('donation') }}">
+                            <i class="fa fa-hand-holding-heart"></i> Donate</a></li>
+                    {% elif current_user.role == 'aid_seeker' %}
+                    <li><a class="{{ 'active' if request.path == url_for('assistance') else '' }}"
+                            href="{{ url_for('assistance') }}">
+                            <i class="fa fa-hands-helping"></i> Request Assistance</a></li>
+                    {% elif current_user.role == 'volunteer' %}
+                    <li><a class="{{ 'active' if request.path.startswith('/volunteer') else '' }}" 
+                            href="{{ url_for('volunteer') }}">
+                            <i class="fa fa-users"></i> Volunteer</a></li>
+                    {% endif %}
+                    <li><a class="{{ 'active' if request.path == url_for('profile') else '' }}"
+                            href="{{ url_for('profile') }}">
+                            <i class="fa fa-user"></i> Profile</a></li>
+                    <li><a href="{{ url_for('logout') }}"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+                    {% else %}
+                    <li><a class="{{ 'active' if request.path == url_for('donation') else '' }}"
+                            href="{{ url_for('donation') }}">
+                            <i class="fa fa-hand-holding-heart"></i> Donate</a></li>
+                    <li><a class="{{ 'active' if request.path == url_for('assistance') else '' }}"
+                            href="{{ url_for('assistance') }}">
+                            <i class="fa fa-hands-helping"></i> Request Assistance</a></li>
+                    <li><a class="{{ 'active' if request.path == url_for('volunteer') else '' }}"
+                            href="{{ url_for('volunteer') }}">
+                            <i class="fa fa-users"></i> Volunteer</a></li>
+                    <li><a class="{{ 'active' if request.path == url_for('login') else '' }}"
+                            href="{{ url_for('login') }}">
+                            <i class="fa fa-sign-in-alt"></i> Login</a></li>
+                    {% endif %}
                 </ul>
 
                 <div class="menu-toggle" onclick="toggleMenu()">
@@ -40,23 +122,20 @@
                 </div>
             </div>
         </nav>
+
     </header>
     <main>
-    {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
     </main>
-    {% if include_footer !=false %}
+    {% if include_footer != false %}
     <footer>
         <div class="footer-content">
             <p>&copy; 2024 Charity Platform. All rights reserved.</p>
             <div class="social-icons">
-                <!-- Add social media icons here -->
-                <div class="social-icons">
-                    <!-- Add social media icons here -->
-                    <a href="https://facebook.com" class="fab fa-facebook"></a>
-                    <a href="https://twitter.com" class="fab fa-twitter"></a>
-                    <a href="https://instagram.com" class="fab fa-instagram"></a>
-                    <a href="https://linkedin.com" class="fab fa-linkedin"></a>
-                </div>
+                <a href="https://facebook.com" class="fab fa-facebook"></a>
+                <a href="https://twitter.com" class="fab fa-twitter"></a>
+                <a href="https://instagram.com" class="fab fa-instagram"></a>
+                <a href="https://linkedin.com" class="fab fa-linkedin"></a>
             </div>
         </div>
     </footer>
@@ -68,6 +147,22 @@
             var nav = document.querySelector('.nav-links');
             nav.classList.toggle('active');
         }
+
+        // Function to remove flash messages after 3 seconds
+        function removeFlashMessages() {
+            const flashMessages = document.querySelectorAll('.flash-message');
+            flashMessages.forEach(message => {
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    setTimeout(() => {
+                        message.remove();
+                    }, 500); // Match this timeout with the transition duration
+                }, 3000); // 3 seconds delay before fading out
+            });
+        }
+
+        // Call the function on page load
+        window.onload = removeFlashMessages;
     </script>
     {% block extra_js %}{% endblock %}
 </body>

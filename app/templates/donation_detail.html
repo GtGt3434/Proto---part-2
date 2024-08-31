@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/donation-detail-styles.css') }}">
+{% endblock %}
+
+{% block content %}
+<main class="donation-detail">
+    <section class="category-detail">
+        <h2>{{ category.title }}</h2>
+        <p>{{ category.description }}</p>
+        <div class="category-image">
+            <img src="{{ category.image_url }}" alt="{{ category.title }}">
+        </div>
+    </section>
+
+    <section class="donation-form">
+        <h3>Support This Cause</h3>
+        <form action="{{ url_for('donation_detail', category_id=category.id) }}" method="POST">
+            <input type="number" name="amount" placeholder="Donation Amount" required>
+            <button type="submit">Donate</button>
+        </form>
+    </section>
+</main>
+{% endblock %}
