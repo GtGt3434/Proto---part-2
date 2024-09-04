@@ -103,7 +103,7 @@ def evaluate_assistance_request(full_name, age, gender, contact, assistance_type
 
                 # Generate a summary if the request is likely truthful
                 summary_prompt = (
-                    f"Based on the following details, provide a concise summary of the aid seeker's situation:\n"
+                    f"Evaluate the credibility of the following assistance request based on the provided information. Consider the consistency of the details, the plausibility of the request, and any discrepancies. Provide a clear verdict on whether the request is likely truthful or untruthful. If you are confident in your evaluation, make sure to include the words 'Likely Truthful' or 'Likely Untruthful' in your response so that my algorithm can easily identify them:\n"
                     f"Full Name: {full_name}\n"
                     f"Age: {age}\n"
                     f"Gender: {gender}\n"

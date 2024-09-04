@@ -118,8 +118,7 @@
                     {% set width = '100%' if request.evaluation_status != 'Pending' else '50%' %}
                     {% set color = 'green' if request.evaluation_status == 'Likely Truthful' else 'red' if
                     request.evaluation_status == 'Likely Untruthful' else 'orange' %}
-                    <div class="progress-bar aid-seeker-progress-bar"
-                        style="width: {{ width }}; background-color: {{ color }};"></div>
+                    <div class="aid-seeker-progress-bar" style="width: {{ width }}; background-color: {{ color }};"></div>
                 </div>
     
                 <!-- Display Evaluation Notes with Toggle -->
@@ -133,12 +132,12 @@
                         <a href="javascript:void(0);" onclick="toggleFullText({{ request.id }})">Show Less</a>
                     </p>
                 </div>
-    
             </li>
             {% endfor %}
         </ul>
     </section>
     {% endif %}
+
 </main>
 
 <script>
