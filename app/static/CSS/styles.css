@@ -34,7 +34,6 @@ html {
 
 .swiper-pagination {
     bottom: 20px;
-    /* Adjust this value as needed to lift the dots up */
 }
 
 /* Hero Text Styles */
@@ -98,7 +97,6 @@ html {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     margin: 0 auto;
-    /* Ensure cards are centered */
 }
 
 .card img {
@@ -106,7 +104,6 @@ html {
     height: 180px;
     object-fit: cover;
     border-top-left-radius: 8px;
-    /* Rounded corners at the top of the image */
     border-top-right-radius: 8px;
 }
 
@@ -133,81 +130,62 @@ html {
 @media screen and (max-width: 768px) {
     .swiper-container {
         height: 30vh;
-        /* Shorter height in mobile view for better layout */
     }
 
     .hero-text h1 {
         font-size: 2rem;
-        /* Slightly smaller font size for headlines */
     }
 
     .hero-text p {
         font-size: 1.2rem;
-        /* Slightly smaller font size for paragraph text */
     }
 
     .card-container {
         grid-template-columns: 1fr;
-        /* Stack cards in a single column in mobile view */
     }
 
     .card img {
         height: 200px;
-        /* Adjust image height to maintain aspect ratio */
     }
 }
 
 /* Video Section Styles */
 .video-section {
     padding: 20px;
-    /* Add some padding around the video section */
 }
 
 .video-container {
-    /* Original styles for the video container */
     max-width: 800px;
     margin: auto;
     overflow: hidden;
     padding-top: 30%;
-    /* Adjust this value to maintain the original aspect ratio */
     position: relative;
 }
 
 .video-container iframe {
-    /* Original styles for the iframe */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
 }
-                
+
 /* Section Headings Styles */
 .how-to-help h2,
 .video-section h2 {
     text-align: center;
-    /* Center the headings */
     font-size: 2.0rem;
-    /* Increase the font size */
     font-weight: 600;
-    /* Make the font bold */
     color: #000000;
-    /* Choose a color that matches your theme */
     margin-bottom: 1rem;
-    /* Adjust bottom margin for spacing */
 }
-
-/* Existing CSS for Global Styles, Navbar, Swiper, Hero Text, Button, Card, and Footer */
 
 /* Who We Are Section Styles */
 .who-we-are {
     margin-top: 60px;
-    /* Adds space above the Who We Are section */
     padding: 100px 20px;
-    /* Increased top and bottom padding */
     background-image: url('https://source.unsplash.com/random/1920x1080?community');
     background-size: 120%;
-    /* Increases the zoom level of the background image */
     background-position: center;
     background-attachment: fixed;
     position: relative;
@@ -215,7 +193,6 @@ html {
     color: #fff;
     text-align: center;
     border-radius: 20px;
-    /* Larger border-radius for more rounded corners */
 }
 
 .who-we-are .container {
@@ -226,9 +203,12 @@ html {
 
 .who-we-are h2 {
     font-size: 2.5rem;
-    /* Prominent heading size */
-    margin-bottom: 20px;
-    /* Spacing between heading and paragraph */
+    margin-bottom: 30px;
+}
+
+.who-we-are p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
 }
 
 .who-we-are::before {
@@ -239,48 +219,28 @@ html {
     bottom: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.6);
-    /* Slightly lighter overlay for better contrast */
     z-index: 1;
 }
 
 .who-we-are .content-box {
     display: inline-block;
     padding: 40px;
-    /* Padding inside the content box */
     margin: 0 10px;
-    /* Space around the content box */
     background: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent background for content */
     border-radius: 8px;
     max-width: 600px;
-    /* To ensure the content box doesn't stretch too wide */
 }
 
-.who-we-are h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    /* Increased space below the heading */
+/* JavaScript-controlled classes */
+.hidden {
+    visibility: hidden;
+    animation-name: fadeOutDown;
 }
 
-.who-we-are p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    /* Increased space below the paragraph */
+.visible {
+    visibility: visible;
+    animation-name: fadeInUp;
 }
-
-.btn {
-    padding: 12px 30px;
-    /* Larger button padding */
-    font-size: 1.1rem;
-    /* Larger font size for button text */
-    margin-top: 1px;
-    /* Space above the button */
-    display: inline-block;
-    /* Ensures the button respects margin and padding */
-}
-
-
-
 
 @keyframes fadeInUp {
     from {
@@ -306,172 +266,53 @@ html {
     }
 }
 
-.who-we-are .content-box {
-    animation-name: fadeInUp;
-    animation-duration: 1s;
-    animation-fill-mode: both;
-}
-
-/* JavaScript-controlled classes */
-.hidden {
-    visibility: hidden;
-    animation-name: fadeOutDown;
-}
-
-.visible {
-    visibility: visible;
-    animation-name: fadeInUp;
-}
-
-/* Responsive styles for Who We Are Section */
 @media screen and (max-width: 768px) {
     .who-we-are h2 {
         font-size: 2rem;
-        /* Slightly smaller font size in mobile view */
     }
 
     .who-we-are p {
         font-size: 1rem;
-        /* Adjust paragraph font size for smaller screens */
     }
 }
 
 /* The Modal (background) */
 .modal {
     display: none;
-    /* Hidden by default */
     position: fixed;
-    /* Stay in place */
     z-index: 1000;
-    /* Sit on top of everything */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     overflow: auto;
-    /* Enable scroll if needed */
     background-color: rgba(0, 0, 0, 0.6);
-    /* Black w/ opacity */
     transition: opacity 300ms ease-in-out;
-    /* Animate the background */
 }
-/* Show the modal when it's target is active (it is open) */
+
 .modal:target {
     display: block;
-    /* Unhide the modal */
     pointer-events: auto;
-    /* Enable mouse interactions */
     opacity: 1;
-    /* Set the opacity to 1 to fade in */
 }
 
-.modal-content * {
-    font-family: 'Open Sans', sans-serif;
-    /* Change font-family to Open Sans */
-    color: #333;
-    /* Dark grey for better readability */
-    line-height: 1.6;
-    /* Spacing out lines for better readability */
-}
-
-/* Modal Content */
 .modal-content {
     position: relative;
     background-color: #fefefece;
     margin: 10% auto;
-    /* 10% from the top and centered */
     padding: 40px;
-    /* More padding */
     border-radius: 10px;
-    /* Rounded corners */
     width: 60%;
-    /* Width */
     max-width: 600px;
-    /* Max width to control the line length */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    /* Softer shadow */
     transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
-    /* Animate the transform and opacity */
     transform: scale(0.95);
-    /* Start with the content slightly scaled down */
     opacity: 0;
-    /* Start with 0 opacity for fade-in effect */
 }
 
-/* Modal Animation for scaling up and fading in */
 .modal:target .modal-content {
     transform: scale(1);
-    /* Scale the content up when active */
     opacity: 1;
-    /* Fade in the content when active */
-}
-
-/* Styles for the content inside the modal */
-.modal-content h2,
-.modal-content h3,
-.modal-content p {
-    font-family: 'Open Sans', sans-serif;
-    /* New font family */
-    line-height: 1.6;
-    /* Spacing out lines for better readability */
-}
-
-/* The Close Button */
-.close {
-    color: #aaa;
-    position: absolute;
-    /* Position it in the top right corner of the modal */
-    top: 20px;
-    /* Increase space from top */
-    right: 20px;
-    /* Increase space from right */
-    font-size: 30px;
-    /* Adjust font size */
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #333;
-    /* Darker color on hover/focus for better visibility */
-    cursor: pointer;
-}
-
-/* Button styles */
-.btn {
-    /* ... existing .btn styles ... */
-    cursor: pointer;
-    /* Additional for the button */
-}
-
-/* Add a fade-out animation to the modal content when closing */
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-}
-
-/* Add this class to the modal content when closing the modal to trigger fade-out */
-.modal-content.closing {
-    animation-name: fadeOut;
-    animation-duration: 200ms;
-    animation-fill-mode: forwards;
-    /* Retain the final frame of the animation */
-}
-
-/* Adjustments for smaller screens */
-@media screen and (max-width: 768px) {
-    .modal-content {
-        width: 80%;
-        /* Slightly wider on smaller screens for better use of space */
-        margin: 10% auto;
-        /* Increase top margin on smaller screens */
-        padding: 30px;
-        /* Adjust padding on smaller screens */
-    }
 }
 
 /* Top Contributors Section Styles */
@@ -479,6 +320,7 @@ html {
     padding: 40px 20px;
     background-color: #f8f9fa;
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .top-contributors .container {
@@ -490,17 +332,25 @@ html {
     font-size: 2rem;
     margin-bottom: 20px;
     color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .contributors-list {
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
+    gap: 20px;
 }
 
 .top-donors,
 .top-volunteers {
     width: 45%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .top-donors h3,
@@ -508,18 +358,79 @@ html {
     font-size: 1.5rem;
     margin-bottom: 15px;
     color: #007bff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.top-donors ul,
-.top-volunteers ul {
-    list-style-type: none;
-    padding: 0;
-    font-size: 1rem;
+/* Fade-in and Fade-out Animation */
+.fade-container {
+    position: relative;
+    height: 60px;
+    /* Adjust based on content height */
+    overflow: hidden;
 }
 
-.top-donors li,
-.top-volunteers li {
+.fade-in-out {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    /* Start with a slight translation */
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+    /* Smooth fade and slide effect */
+    pointer-events: none;
+    /* Prevent interaction while hidden */
+}
+
+.fade-in-out.visible {
+    opacity: 1;
+    transform: translateY(0);
+    /* Move to original position */
+    pointer-events: auto;
+    /* Enable interaction when visible */
+}
+
+.fade-in-out.hidden {
+    opacity: 0;
+    transform: translateY(10px);
+    /* Keep the translation subtle */
+}
+
+/* Hover Effect for Contributor Card */
+.contributor-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #f0f4f8;
+    border-radius: 8px;
     margin-bottom: 10px;
-    font-size: 1rem;
-    color: #555;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    pointer-events: auto;
+}
+
+.contributor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.contributor-card i {
+    color: #007bff;
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.contributor-name {
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+}
+
+.contributor-detail {
+    font-size: 0.9rem;
+    color: #666;
 }

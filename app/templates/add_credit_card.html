@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Credit Card</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/credit_card.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Add Your Credit Card Information</h2>
+        <form method="POST" action="{{ url_for('add_credit_card') }}" class="credit-card-form">
+            <div class="form-group">
+                <label for="cardholder_name">Cardholder Name</label>
+                <input type="text" id="cardholder_name" name="cardholder_name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label for="card_number">Card Number</label>
+                <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required
+                    maxlength="19">
+            </div>
+            <div class="form-group">
+                <label for="expiration_date">Expiration Date</label>
+                <input type="text" id="expiration_date" name="expiration_date" placeholder="MM/YY" required
+                    maxlength="5">
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="123" required maxlength="3">
+            </div>
+            <button type="submit" class="submit-btn">Add Credit Card</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('card_number').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');  // Remove non-digit characters
+            let formattedValue = value.match(/.{1,4}/g);  // Group digits into sets of 4
+            e.target.value = formattedValue ? formattedValue.join(' ') : '';
+        });
+
+        document.getElementById('expiration_date').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');  // Remove non-digit characters
+            if (value.length > 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2);
+            }
+            e.target.value = value;
+        });
+
+        document.getElementById('cvv').addEventListener('input', function (e) {
+            e.target.value = e.target.value.replace(/\D/g, '');  // Only allow digits
+        });
+    </script>
+</body>
+
+</html>

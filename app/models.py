@@ -12,6 +12,8 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(512), nullable=False)  # Updated to 512
     role = db.Column(db.String(50), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    has_credit_card = db.Column(db.Boolean, nullable=False, default=False)  
+
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -150,5 +152,18 @@ class HelpRequest(db.Model):
     def __repr__(self):
         return f'<HelpRequest {self.id} - {self.evaluation_status}>'
 
+class CreditCard(db.Model):
+    __tablename__ = 'credit_cards'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    cardholder_name = db.Column(db.String(100), nullable=False)
+    last_four_digits = db.Column(db.String(4), nullable=False)  # Store only the last 4 digits of the card number
+    expiration_date = db.Column(db.String(7), nullable=False)  # Format: MM/YYYY
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    user = db.relationship('User', backref=db.backref('credit_cards', lazy=True))
+
+    def __repr__(self):
+        return f'<CreditCard {self.id} - {self.last_four_digits}>'
 
 

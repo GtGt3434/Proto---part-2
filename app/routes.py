@@ -3,7 +3,7 @@ from flask_mail import Message
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, verify_jwt_in_request
 from flask_login import login_required, current_user, login_user, logout_user
 from . import app, db, mail
-from .models import User, Donation, DonationCategory, Volunteer, VolunteerReport, VolunteerOpportunity, VolunteerSignup, HelpRequest, VolunteerHours
+from .models import User, Donation, DonationCategory, Volunteer, VolunteerReport, VolunteerOpportunity, VolunteerSignup, HelpRequest, VolunteerHours, CreditCard
 from .utils import fetch_unsplash_image, extract_text_from_file  # Import the utility function
 import random
 import string
@@ -16,6 +16,8 @@ from werkzeug.utils import secure_filename
 
 def generate_verification_code(length=6):
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+
+# routes.py
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -40,6 +42,12 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
         flash('User signed up successfully!', 'success')
+
+        # Redirect to add credit card page if role is 'donor' and no credit card is added
+        if role == 'donor' and not new_user.has_credit_card:
+            login_user(new_user)
+            return redirect(url_for('add_credit_card'))
+
         return redirect(url_for('login'))
     
     background_image_url = fetch_unsplash_image('signup')
@@ -86,11 +94,18 @@ def verify():
             response = make_response(redirect(url_for('profile')))
             response.set_cookie('access_token', access_token, httponly=True)
             flash('Login successful', 'success')
+            user = User.query.filter_by(username=session['username']).first()
+            login_user(user)
+
+            # Check if user is a donor and hasn't added a credit card yet
+            if user.role == 'donor' and not user.has_credit_card:
+                return redirect(url_for('add_credit_card'))
+
             next_url = request.args.get('next')
             if next_url:
                 response = make_response(redirect(next_url))
-            login_user(User.query.filter_by(username=session['username']).first())
             return response
+
         flash('Invalid verification code', 'error')
     return render_template('verify.html')
 
@@ -605,3 +620,35 @@ def report_volunteer_hours(opportunity_id):
 
     return redirect(url_for('profile'))
 
+# routes.py
+
+@app.route('/add_credit_card', methods=['GET', 'POST'])
+@login_required
+def add_credit_card():
+    if request.method == 'POST':
+        card_number = request.form.get('card_number')
+        expiration_date = request.form.get('expiration_date')
+        cvv = request.form.get('cvv')
+        cardholder_name = request.form.get('cardholder_name')
+
+        # Example: Storing the last four digits
+        last_four_digits = card_number[-4:]
+
+        # Add logic to process and store the credit card information securely
+        # Store only non-sensitive information
+        new_card = CreditCard(
+            user_id=current_user.id,
+            cardholder_name=cardholder_name,
+            last_four_digits=last_four_digits,
+            expiration_date=expiration_date
+        )
+        db.session.add(new_card)
+        db.session.commit()
+
+        current_user.has_credit_card = True
+        db.session.commit()
+
+        flash('Credit card added successfully!', 'success')
+        return redirect(url_for('profile'))
+
+    return render_template('add_credit_card.html')
