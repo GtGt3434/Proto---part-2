@@ -96,9 +96,9 @@
                 <!-- Top Donors -->
                 <div class="top-donors">
                     <h3>Top Donors</h3>
-                    <div class="fade-container">
+                    <div>
                         {% for donor in top_donors %}
-                        <div class="fade-in-out contributor-card">
+                        <div class="contributor-card">
                             <i class="fas fa-donate"></i> <!-- Example icon -->
                             <span class="contributor-name">{{ donor.username }}</span>
                             <span class="contributor-detail">- Donated ${{ donor.total_donated }}</span>
@@ -109,9 +109,9 @@
                 <!-- Top Volunteers -->
                 <div class="top-volunteers">
                     <h3>Top Volunteers</h3>
-                    <div class="fade-container">
+                    <div>
                         {% for volunteer in top_volunteers %}
-                        <div class="fade-in-out contributor-card">
+                        <div class="contributor-card">
                             <i class="fas fa-hands-helping"></i> <!-- Example icon -->
                             <span class="contributor-name">{{ volunteer.username }}</span>
                             <span class="contributor-detail">- {{ volunteer.total_hours }} hours volunteered</span>
@@ -141,14 +141,17 @@
             <span class="close">&times;</span>
             <h2>Who We Are</h2>
             <p>We are a charity platform that bridges the gap between those in need and those willing to give. Our team
-                comprises compassionate individuals dedicated to supporting war victims, the homeless, and the unemployed.
+                comprises compassionate individuals dedicated to supporting war victims, the homeless, and the
+                unemployed.
             </p>
             <h3>Our Mission</h3>
-            <p>We strive to create a seamless and transparent connection between donors, volunteers, and those awaiting a
+            <p>We strive to create a seamless and transparent connection between donors, volunteers, and those awaiting
+                a
                 helping hand, ensuring every contribution makes an impact.</p>
             <h3>Overcoming Challenges</h3>
             <p>We acknowledge the difficulties in locating genuine aid recipients and guaranteeing direct resource
-                allocation. By simplifying donation and volunteering processes and prioritizing user experience, we foster
+                allocation. By simplifying donation and volunteering processes and prioritizing user experience, we
+                foster
                 trust and efficiency in charitable activities.</p>
             <h3>Our Unique Approach</h3>
             <p>Our platform is custom-built to tackle specific challenges in charity and contribution. We offer a
@@ -235,33 +238,5 @@
             span.onclick(); // Use the closing function
         }
     };
-
-    // Fade-in and fade-out effect for cycling through Top Donors and Volunteers
-    document.addEventListener('DOMContentLoaded', function () {
-        const fadeContainers = document.querySelectorAll('.fade-container');
-
-        fadeContainers.forEach(container => {
-            const items = container.querySelectorAll('.fade-in-out');
-            let currentIndex = 0;
-
-            function showNextItem() {
-                items.forEach((item, index) => {
-                    if (index === currentIndex) {
-                        item.classList.add('visible');
-                        item.classList.remove('hidden');
-                    } else {
-                        item.classList.remove('visible');
-                        item.classList.add('hidden');
-                    }
-                });
-
-                currentIndex = (currentIndex + 1) % items.length;
-            }
-
-            showNextItem(); // Show the first item immediately
-
-            setInterval(showNextItem, 3000); // Change every 3 seconds
-        });
-    });
 </script>
 {% endblock %}
