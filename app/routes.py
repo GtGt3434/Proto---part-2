@@ -83,7 +83,6 @@ def login():
     return render_template('login.html', background_image_url=background_image_url)
 
 
-
 @app.route('/verify', methods=['GET', 'POST'])
 def verify():
     if request.method == 'POST':
@@ -282,12 +281,12 @@ def get_aid_request_details(aid_request_id):
     })
 
 
-@app.route('/profile/donor')
+"""@app.route('/profile/donor')
 def donor_profile():
     if 'user_id' not in session:
         flash('You must be logged in to access this page.', 'error')
         return redirect(url_for('login'))
-    return render_template('donor_profile.html')
+    return render_template('donor_profile.html')"""
 
 @app.route('/donation', methods=['GET', 'POST'])
 def donation():
@@ -318,8 +317,16 @@ def donation():
         else:
             flash('Please enter a valid amount.', 'danger')
 
-    # Fetch all donation categories
-    categories = DonationCategory.query.all()
+    # Fetch the prioritized categories for Israel first
+    israel_categories = DonationCategory.query.filter(DonationCategory.title.in_(['Buildings', 'Army: Clothes, Food…', 'Companies'])).all()
+
+    # Fetch all other donation categories
+    other_categories = DonationCategory.query.filter(~DonationCategory.title.in_(['Buildings', 'Army: Clothes, Food…', 'Companies'])).all()
+
+    # Combine prioritized categories with other categories
+    categories = israel_categories + other_categories
+
+    # Fetch images for all categories
     for category in categories:
         category.image_url = fetch_unsplash_image(category.image_keyword)
 
@@ -328,9 +335,6 @@ def donation():
 
     # Render the donation template with categories and aid requests
     return render_template('donation.html', categories=categories, aid_requests=aid_requests)
-
-
-
 
 
 @app.route('/')

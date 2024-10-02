@@ -75,6 +75,11 @@ body {
 
 .card-content {
     padding: 20px;
+    word-wrap: break-word;
+    /* Ensures long words are wrapped */
+    height: auto;
+    min-height: 200px;
+    /* Adds a minimum height for consistency */
 }
 
 .card-title {
@@ -89,6 +94,12 @@ body {
     line-height: 1.6;
     color: #666;
     margin-bottom: 15px;
+    height: auto;
+    display: block;
+    max-height: 150px;
+    /* Limits the height of the text block */
+    overflow: hidden;
+    /* Ensures that overflow doesn't break layout */
 }
 
 .btn {
@@ -386,4 +397,55 @@ body {
     color: #3c763d;
     border: 1px solid #d6e9c6;
     border-radius: 5px;
+}
+
+.highlighted-card {
+    border: 2px solid #0136b1;
+    box-shadow: 0 4px 12px rgba(1, 54, 177, 0.3);
+    transform: scale(1.05);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.highlighted-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(1, 54, 177, 0.6);
+    background: none;
+    /* Same here, if hover adds the gradient, remove or adjust */
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 15px rgba(1, 54, 177, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(1, 54, 177, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(1, 54, 177, 0.5);
+    }
+}
+
+.highlighted-card {
+    animation: pulse 2s infinite;
+}
+
+/* Israel flag icon in the top right corner */
+.highlighted-card::before {
+    background-image: url('/static/images/giphy.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0.7;
+    z-index: 2;
+    pointer-events: none;
+    content: '';
+    border-radius: 30%;
 }

@@ -76,7 +76,14 @@
     <header>
         <nav class="navbar" id="navbar">
             <div class="nav-container">
-                <a href="{{ url_for('index') }}" class="logo">Charity Platform</a>
+                <a href="{{ url_for('index') }}" class="logo">
+                    Charity Platform
+                    <video autoplay loop muted class="flag-video">
+                        <source src="{{ url_for('static', filename='images/LogoFlag.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <span class="animated-text">We Stand with Israel</span>
+                </a>
                 <ul class="nav-links">
                     <li><a class="{{ 'active' if request.path == url_for('index') else '' }}"
                             href="{{ url_for('index') }}">

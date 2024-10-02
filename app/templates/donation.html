@@ -19,7 +19,7 @@
     <section class="donation-cards swiper-container">
         <div class="swiper-wrapper">
             {% for category in categories %}
-            <div class="swiper-slide card">
+            <div class="swiper-slide card {% if category.id in [10, 11, 12] %}highlighted-card{% endif %}">
                 <div class="card-image">
                     <img src="{{ category.image_url }}" alt="{{ category.title }}">
                 </div>

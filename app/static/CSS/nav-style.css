@@ -107,3 +107,67 @@
         background-color: #fff;
     }
 }
+
+.flag-video {
+    width: 60px;
+    /* Adjust this value as needed */
+    height: auto;
+    /* Keeps the aspect ratio */
+    margin-left: 3px;
+    vertical-align: middle;
+    /* Aligns with the text */
+    border-radius: 4px;
+    /* Optional: smooth corners */
+}
+
+.animated-text {
+    font-size: 0.89rem;
+    margin-left: 15px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgb(0, 51, 255) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    animation: color-flow 20s linear infinite, scale-pulse 8s ease-in-out infinite, glow-pulse 8s ease-in-out infinite;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    display: inline-block;
+    position: relative;
+}
+
+@keyframes color-flow {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes scale-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes glow-pulse {
+    0% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1);
+    }
+
+    100% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+}

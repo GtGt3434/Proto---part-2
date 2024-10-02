@@ -556,3 +556,43 @@ html {
     font-size: 0.9rem;
     color: #666;
 }
+
+.support-israel {
+    background-color: #f4f4f4;
+    padding: 50px 0;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.support-title {
+    font-size: 2rem;
+    color: #003366;
+    /* Dark Blue color */
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.support-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.support-gif {
+    max-width: 600px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.support-text {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-bottom: 30px;
+}
+
+.support-text span {
+    font-weight: bold;
+    color: #003366;
+}

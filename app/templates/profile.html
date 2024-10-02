@@ -24,12 +24,28 @@
 
     <section>
         <h2>Your Donations</h2>
-        <ul class="donations-list">
+        <div class="donation-cards">
             {% for donation in donations %}
-            <li>{{ donation.amount }} to {{ donation.category.title }} on {{ donation.created_at }}</li>
+            <div class="donation-card">
+                <div class="donation-icon">
+                    {% if donation.category %}
+                    <!-- Display icon for general donation categories -->
+                    <img src="{{ url_for('static', filename='images/people.png') }}" alt="Category Icon">
+                    {% else %}
+                    <!-- Display icon for individual aid seekers -->
+                    <img src="{{ url_for('static', filename='images/person.png') }}" alt="Aid Seeker Icon">
+                    {% endif %}
+                </div>
+                <div class="donation-details">
+                    <h4>${{ donation.amount }}</h4>
+                    <p>To <strong>{{ donation.category.title if donation.category else 'Aid Seeker' }}</strong> on {{
+                        donation.created_at.strftime('%B %d, %Y') }}</p>
+                </div>
+            </div>
             {% endfor %}
-        </ul>
+        </div>
     </section>
+
     {% elif user.role == 'volunteer' %}
     <!-- Enhanced Progress Bar for Volunteer with Icons and Milestones -->
     <h3>Total Verified Hours: {{ verified_hours }}</h3>
@@ -138,7 +154,7 @@
     </section>
     {% endif %}
 
-</main>
+</main> 
 
 <script>
     function deleteReport(reportId) {
