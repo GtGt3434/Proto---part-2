@@ -11,6 +11,7 @@ from .decorators import role_required
 from .utils import match_opportunities, evaluate_assistance_request, allowed_file
 import os
 from werkzeug.utils import secure_filename
+from itsdangerous import URLSafeTimedSerializer
 
 
 
@@ -82,6 +83,60 @@ def login():
     background_image_url = fetch_unsplash_image('charity')
     return render_template('login.html', background_image_url=background_image_url)
 
+from itsdangerous import URLSafeTimedSerializer
+from flask import current_app
+
+@app.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    # Create the serializer within the route
+    s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+
+    if request.method == 'POST':
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()
+        if user:
+            # Generate a password reset token
+            token = s.dumps(email, salt='password-reset-salt')
+            reset_url = url_for('reset_password', token=token, _external=True)
+            
+            # Send email
+            msg = Message('Password Reset Request',
+                          sender=current_app.config['MAIL_USERNAME'],
+                          recipients=[email])
+            msg.body = f'Please click the link to reset your password: {reset_url}'
+            mail.send(msg)
+            
+            flash('A password reset email has been sent.', 'info')
+            return redirect(url_for('login'))
+        else:
+            flash('No account found with that email address.', 'error')
+    return render_template('forgot_password.html')
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    # Create the serializer within the route
+    s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+
+    try:
+        # Deserialize the token to get the email
+        email = s.loads(token, salt='password-reset-salt', max_age=3600)
+    except Exception as e:
+        flash('The password reset link is invalid or has expired.', 'error')
+        return redirect(url_for('forgot_password'))
+
+    if request.method == 'POST':
+        password = request.form.get('password')
+        user = User.query.filter_by(email=email).first()
+        if user:
+            # Set the new password
+            user.set_password(password)
+            db.session.commit()
+            flash('Your password has been updated!', 'success')
+            return redirect(url_for('login'))
+        else:
+            flash('User not found.', 'error')
+
+    return render_template('reset_password.html', token=token)
 
 @app.route('/verify', methods=['GET', 'POST'])
 def verify():
