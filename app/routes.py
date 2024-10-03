@@ -83,9 +83,6 @@ def login():
     background_image_url = fetch_unsplash_image('charity')
     return render_template('login.html', background_image_url=background_image_url)
 
-from itsdangerous import URLSafeTimedSerializer
-from flask import current_app
-
 @app.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
     # Create the serializer within the route
