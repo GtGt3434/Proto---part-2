@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content-container">
+    <h1>Edit User Role</h1>
+    <form method="post">
+        <div class="form-group">
+            <label>Username:</label>
+            <span class="user-info">{{ user.username }}</span>
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <span class="user-info">{{ user.email }}</span>
+        </div>
+        <div class="form-group">
+            <label for="role">Role</label>
+            <select name="role" id="role" class="form-control">
+                <option value="donor" {% if user.role=='donor' %}selected{% endif %}>Donor</option>
+                <option value="volunteer" {% if user.role=='volunteer' %}selected{% endif %}>Volunteer</option>
+                <option value="aid_seeker" {% if user.role=='aid_seeker' %}selected{% endif %}>Aid Seeker</option>
+                <option value="admin" {% if user.role=='admin' %}selected{% endif %}>Admin</option>
+            </select>
+        </div>
+        <div class="button-group">
+            <button type="submit" class="btn btn-success">Update Role</button>
+            <a href="{{ url_for('admin.admin_users') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

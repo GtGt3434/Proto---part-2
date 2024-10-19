@@ -10,10 +10,12 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(512), nullable=False)  # Updated to 512
-    role = db.Column(db.String(50), nullable=False)
+    role = db.Column(db.String(50), nullable=False, default='user')  # default to regular user
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     has_credit_card = db.Column(db.Boolean, nullable=False, default=False)  
 
+    def is_admin(self):
+        return self.role == 'admin'
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

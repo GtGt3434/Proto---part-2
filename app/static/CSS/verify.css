@@ -54,7 +54,6 @@ form button:hover {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     margin-bottom: 0.5rem;
-    font-weight: bold;
     color: #fff;
     display: inline-block;
 }
@@ -73,4 +72,17 @@ form button:hover {
 
 .flashes .warning {
     background-color: #ffc107;
+}
+
+.email {
+    font-weight: bold;
+    /* Make only the email bold */
+    display: block;
+    /* Make it a block element */
+    margin-top: 5px;
+    /* Adjust this value to control the space above the email */
+    margin-bottom: 10px;
+    /* Optional: add space below if needed */
+    text-align: center;
+    /* Center the email */
 }

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <!-- Header Container -->
+    <div class="header-container">
+        <h1>Volunteer Opportunities</h1>
+        <div>
+            <a href="{{ url_for('admin.admin_dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+            <a href="{{ url_for('admin.admin_new_volunteer_opportunity') }}" class="btn btn-primary">Add New
+                Opportunity</a>
+        </div>
+    </div>
+
+    <!-- Volunteer Opportunities Table -->
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Skills Keywords</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for opportunity in opportunities %}
+            <tr>
+                <td>{{ opportunity.name }}</td>
+                <td>{{ opportunity.description }}</td>
+                <td>{{ opportunity.location }}</td>
+                <td>{{ opportunity.skills_keywords }}</td>
+                <td class="actions-column">
+                    <a href="{{ url_for('admin.admin_edit_volunteer_opportunity', opportunity_id=opportunity.id) }}"
+                        class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{ url_for('admin.admin_confirm_delete_opportunity', opportunity_id=opportunity.id) }}"
+                        class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

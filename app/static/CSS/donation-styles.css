@@ -303,31 +303,84 @@ body {
     width: 300px;
 }
 
+/* Progress bar container styles for donations */
 .progress-bar-container {
     width: 100%;
     background-color: #e0e0e0;
-    border-radius: 8px;
+    /* Light gray background */
+    border-radius: 12px;
+    /* Rounded corners */
+    margin-top: 10px;
+    /* Space above the bar */
+    height: 30px;
+    /* Height of the bar */
     overflow: hidden;
-    margin-bottom: 10px;
+    /* Hide overflow */
     position: relative;
+    /* Position for inner elements */
+    margin-bottom: 20px;
+    /* Space below the bar */
+    display: flex;
+    /* Flexbox for center alignment */
+    align-items: center;
+    /* Center content vertically */
 }
 
+/* Progress bar styles */
 .progress-bar {
-    height: 20px;
-    width: 0%;
-    /* Initial width, will be set dynamically */
-    border-radius: 8px;
-    transition: width 1.5s ease, background-color 1.5s ease;
-    /* Smooth transition for both width and color */
-}
-
-
-.progress-bar span {
+    height: 100%;
+    border-radius: 12px;
+    transition: width 1.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    /* Default text color */
+    font-weight: bold;
+    padding-left: 10px;
+    /* Add padding for the text */
     position: relative;
-    z-index: 1;
-    /* Ensures text is on top of gradient */
+    /* Position for child elements */
 }
 
+/* Normal size for high progress */
+.progress-bar span {
+    position: absolute;
+    left: 10px;
+    /* Padding from the left */
+    color: #ffffff;
+    /* Default text color */
+    font-weight: bold;
+    /* Bold text */
+}
+
+.progress-bar[data-percentage="low"] span {
+    font-size: 12px;
+    /* Smaller size for low progress */
+    background-color: rgba(255, 255, 255, 0.779);
+    /* Light background for visibility */
+    padding: 2px 4px;
+    /* Padding for background */
+    border-radius: 4px;
+    /* Rounded corners for background */
+    z-index: 1;
+    /* Ensure it sits above the bar */
+    color: rgb(0, 0, 0);
+    /* Black text color for low progress */
+}
+
+/* Milestone text styles */
+.milestone-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: white;
+    /* Default text color */
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    /* Shadow for visibility */
+}
 /* Modal Styles */
 .modal {
     display: none;

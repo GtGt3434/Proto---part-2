@@ -1,232 +1,297 @@
-{% extends "base.html" %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='CSS/profile.css') }}">
-{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='CSS/profile.css') }}"
+/>
+{% endblock %} {% block content %}
 <main class="profile-page">
-    <h1>Profile Page</h1>
-    <p>Welcome, {{ user.username }}!</p>
+  <h1>Profile Page</h1>
+  <p>Welcome, {{ user.username }}!</p>
 
-    {% if user.role == 'donor' %}
-    <!-- Enhanced Progress Bar for Donor with Icons and Milestones -->
-    <h3>Total Donations: ${{ total_donated }}</h3>
-    <div class="progress-bar-container icon-progress-bar">
-        {% set donation_target = 500 %}
-        {% set donation_percentage = (total_donated / donation_target) * 100 %}
-        <div class="progress-bar" data-target-width="{{ donation_percentage }}" style="width: 0%;">
-            <span class="progress-icon">&#128176;</span> <!-- Money bag emoji -->
-            <span class="milestone-text">{{ total_donated }} / {{ donation_target }}</span>
-        </div>
+  {% if user.role == 'donor' %}
+  <!-- Enhanced Progress Bar for Donor with Icons and Milestones -->
+  <h3>Total Donations: ${{ total_donated }}</h3>
+  <div class="progress-bar-container icon-progress-bar">
+    {% set donation_target = 500 %} {% set donation_percentage = (total_donated
+    / donation_target) * 100 %}
+    <div
+      class="progress-bar"
+      data-target-width="{{ donation_percentage }}"
+      style="width: 0%"
+    >
+      <span class="progress-icon">&#128176;</span>
+      <!-- Money bag emoji -->
+      <span class="milestone-text"
+        >{{ total_donated }} / {{ donation_target }}</span
+      >
     </div>
-    <p>Donate more to reach your next milestone of ${{ donation_target }}!</p>
+  </div>
+  <p>Donate more to reach your next milestone of ${{ donation_target }}!</p>
 
-    <section>
-        <h2>Your Donations</h2>
-        <div class="donation-cards">
-            {% for donation in donations %}
-            <div class="donation-card">
-                <div class="donation-icon">
-                    {% if donation.category %}
-                    <!-- Display icon for general donation categories -->
-                    <img src="{{ url_for('static', filename='images/people.png') }}" alt="Category Icon">
-                    {% else %}
-                    <!-- Display icon for individual aid seekers -->
-                    <img src="{{ url_for('static', filename='images/person.png') }}" alt="Aid Seeker Icon">
-                    {% endif %}
-                </div>
-                <div class="donation-details">
-                    <h4>${{ donation.amount }}</h4>
-                    <p>To <strong>{{ donation.category.title if donation.category else 'Aid Seeker' }}</strong> on {{
-                        donation.created_at.strftime('%B %d, %Y') }}</p>
-                </div>
-            </div>
-            {% endfor %}
+  <section>
+    <h2>Your Donations</h2>
+    <div class="donation-cards">
+      {% for donation in donations %}
+      <div class="donation-card">
+        <div class="donation-icon">
+          {% if donation.category %}
+          <!-- Display icon for general donation categories -->
+          <img
+            src="{{ url_for('static', filename='images/people.png') }}"
+            alt="Category Icon"
+          />
+          {% else %}
+          <!-- Display icon for individual aid seekers -->
+          <img
+            src="{{ url_for('static', filename='images/person.png') }}"
+            alt="Aid Seeker Icon"
+          />
+          {% endif %}
         </div>
-    </section>
-
-    {% elif user.role == 'volunteer' %}
-    <!-- Enhanced Progress Bar for Volunteer with Icons and Milestones -->
-    <h3>Total Verified Hours: {{ verified_hours }}</h3>
-    <div class="progress-bar-container icon-progress-bar">
-        {% set hours_target = 50 %}
-        {% set hours_percentage = (verified_hours / hours_target) * 100 %}
-        <div class="progress-bar" data-target-width="{{ hours_percentage }}" style="width: 0%;">
-            <span class="progress-icon">&#128170;</span> <!-- Flexed bicep emoji -->
-            <span class="milestone-text">{{ verified_hours }} / {{ hours_target }} hours</span>
+        <div class="donation-details">
+          <h4>${{ donation.amount }}</h4>
+          <p>
+            To
+            <strong
+              >{{ donation.category.title if donation.category else 'Aid Seeker'
+              }}</strong
+            >
+            on {{ donation.created_at.strftime('%B %d, %Y') }}
+          </p>
         </div>
+      </div>
+      {% endfor %}
     </div>
-    <p>Volunteer more to reach your next milestone of {{ hours_target }} hours!</p>
+  </section>
 
-    <section>
-        <h2>Your Volunteer Reports</h2>
-        {% for item in reports_with_opportunities %}
-        <div class="volunteer-report">
-            <h3>{{ item.report.full_name }}</h3>
-            <p class="info"><strong>Email:</strong> {{ item.report.email }}</p>
-            <p class="info"><strong>Phone:</strong> {{ item.report.phone_number }}</p>
-            <p class="info"><strong>Age:</strong> {{ item.report.age }}</p>
-            <p class="info"><strong>Location:</strong> {{ item.report.location }}</p>
-            <p class="info"><strong>Skills/Interests:</strong> {{ item.report.skills_interests }}</p>
-            <button onclick="deleteReport('{{ item.report.id }}')">Delete Report</button>
-            <h4>Signed Up Opportunities:</h4><br>
-            <ul class="opportunities-list">
-                {% for opportunity in item.opportunities %}
-                <li>{{ opportunity.name }} at {{ opportunity.location }} - {{ opportunity.created_at }}</li>
-                <!-- Form to report hours -->
-                <form action="{{ url_for('report_volunteer_hours', opportunity_id=opportunity.id) }}" method="POST"
-                    class="volunteer-hours-form">
-                    <div>
-                        <input type="number" name="hours_worked" step="0.1" placeholder="Hours worked" required>
-                    </div>
-                    <div>
-                        <textarea name="description" placeholder="Describe your work (optional)"></textarea>
-                    </div>
-                    <button type="submit" class="btn">Report Hours</button>
-                </form>
-                {% endfor %}
-            </ul>
-        </div>
+  {% elif user.role == 'volunteer' %}
+  <!-- Enhanced Progress Bar for Volunteer with Icons and Milestones -->
+  <h3>Total Verified Hours: {{ verified_hours }}</h3>
+  <div class="progress-bar-container icon-progress-bar">
+    {% set hours_target = 50 %} {% set hours_percentage = (verified_hours /
+    hours_target) * 100 %}
+    <div
+      class="progress-bar"
+      data-target-width="{{ hours_percentage }}"
+      style="width: 0%"
+    >
+      <span class="progress-icon">&#128170;</span>
+      <!-- Flexed bicep emoji -->
+      <span class="milestone-text"
+        >{{ verified_hours }} / {{ hours_target }} hours</span
+      >
+    </div>
+  </div>
+  <p>
+    Volunteer more to reach your next milestone of {{ hours_target }} hours!
+  </p>
+
+  <section>
+    <h2>Your Volunteer Reports</h2>
+    {% for item in reports_with_opportunities %}
+    <div class="volunteer-report">
+      <h3>{{ item.report.full_name }}</h3>
+      <p class="info"><strong>Email:</strong> {{ item.report.email }}</p>
+      <p class="info"><strong>Phone:</strong> {{ item.report.phone_number }}</p>
+      <p class="info"><strong>Age:</strong> {{ item.report.age }}</p>
+      <p class="info"><strong>Location:</strong> {{ item.report.location }}</p>
+      <p class="info">
+        <strong>Skills/Interests:</strong> {{ item.report.skills_interests }}
+      </p>
+      <button onclick="deleteReport('{{ item.report.id }}')">
+        Delete Report
+      </button>
+      <h4>Signed Up Opportunities:</h4>
+      <br />
+      <ul class="opportunities-list">
+        {% for opportunity in item.opportunities %}
+        <li>
+          {{ opportunity.name }} at {{ opportunity.location }} - {{
+          opportunity.created_at }}
+        </li>
+        <!-- Form to report hours -->
+        <form
+          action="{{ url_for('report_volunteer_hours', opportunity_id=opportunity.id) }}"
+          method="POST"
+          class="volunteer-hours-form"
+        >
+          <div>
+            <input
+              type="number"
+              name="hours_worked"
+              step="0.1"
+              placeholder="Hours worked"
+              required
+            />
+          </div>
+          <div>
+            <textarea
+              name="description"
+              placeholder="Describe your work (optional)"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn">Report Hours</button>
+        </form>
         {% endfor %}
-    </section>
-    <section>
-        <h2>Reported Hours</h2>
-        <ul class="reported-hours-list">
-            {% for hours in volunteer_hours %}
-            <li>
-                <strong>{{ hours.hours_worked }} hours for {{ hours.opportunity.name }}</strong> -
-                {% if hours.verified > 0 %}
-                <span class="badge success">Verified</span>
-                {% elif hours.verified == 0 %}
-                <span class="badge info">Pending Verification</span>
-                {% else %}
-                <span class="badge warning">Rejected</span>
-                {% endif %}
-                <!-- Improved Progress Bar for Verification Status -->
-                <div class="volunteer-progress-bar-container">
-                    {% set width = '100%' if hours.verified > 0 else '50%' if hours.verified == 0 else '100%' %}
-                    {% set color = 'green' if hours.verified > 0 else 'orange' if hours.verified == 0 else 'red' %}
-                    <div class="volunteer-progress-bar" style="width: {{ width }}; background-color: {{ color }};"></div>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </section>
-    {% elif user.role == 'aid_seeker' %}
-    <section>
-        <h2>Your Help Requests</h2>
-        <ul class="help-requests-list">
-            {% for request in help_requests %}
-            <li>
-                <strong>{{ request.assistance_type }}</strong> - {{ request.description }} on {{ request.created_at }}
-                <br>
-                <span>Status:
-                    {% if request.evaluation_status == 'Likely Truthful' %}
-                    <span class="badge success">Likely Truthful</span>
-                    {% elif request.evaluation_status == 'Likely Untruthful' %}
-                    <span class="badge warning">Likely Untruthful</span>
-                    {% else %}
-                    <span class="badge info">Pending</span>
-                    {% endif %}
-                </span>
-                <div class="progress-bar-container aid-seeker-progress-bar-container">
-                    {% set width = '100%' if request.evaluation_status != 'Pending' else '50%' %}
-                    {% set color = 'green' if request.evaluation_status == 'Likely Truthful' else 'red' if
-                    request.evaluation_status == 'Likely Untruthful' else 'orange' %}
-                    <div class="aid-seeker-progress-bar" style="width: {{ width }}; background-color: {{ color }};"></div>
-                </div>
-    
-                <!-- Display Evaluation Notes with Toggle -->
-                <div class="evaluation-notes">
-                    <p id="snippet-{{ request.id }}">
-                        {{ request.evaluation_notes[:100] }}...
-                        <a href="javascript:void(0);" onclick="toggleFullText({{ request.id }})">Read More</a>
-                    </p>
-                    <p id="full-text-{{ request.id }}" style="display:none;">
-                        {{ request.evaluation_notes }}
-                        <a href="javascript:void(0);" onclick="toggleFullText({{ request.id }})">Show Less</a>
-                    </p>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </section>
-    {% endif %}
+      </ul>
+    </div>
+    {% endfor %}
+  </section>
+  <section>
+    <h2>Reported Hours</h2>
+    <ul class="reported-hours-list">
+      {% for hours in volunteer_hours %}
+      <li>
+        <strong
+          >{{ hours.hours_worked }} hours for {{ hours.opportunity.name
+          }}</strong
+        >
+        - {% if hours.verified > 0 %}
+        <span class="badge success">Verified</span>
+        {% elif hours.verified == 0 %}
+        <span class="badge info">Pending Verification</span>
+        {% else %}
+        <span class="badge warning">Rejected</span>
+        {% endif %}
+        <!-- Improved Progress Bar for Verification Status -->
+        <div class="volunteer-progress-bar-container">
+          {% set width = '100%' if hours.verified > 0 else '50%' if
+          hours.verified == 0 else '100%' %} {% set color = 'green' if
+          hours.verified > 0 else 'orange' if hours.verified == 0 else 'red' %}
+          <div
+            class="volunteer-progress-bar"
+            style="width: {{ width }}; background-color: {{ color }};"
+          ></div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% elif user.role == 'aid_seeker' %}
+  <section>
+    <h2>Your Help Requests</h2>
+    <ul class="help-requests-list">
+      {% for request in help_requests %}
+      <li>
+        <strong>{{ request.assistance_type }}</strong> - {{ request.description
+        }} on {{ request.created_at }}
+        <br />
+        <span
+          >Status: {% if request.evaluation_status == 'Likely Truthful' %}
+          <span class="badge success">Likely Truthful</span>
+          {% elif request.evaluation_status == 'Likely Untruthful' %}
+          <span class="badge warning">Likely Untruthful</span>
+          {% else %}
+          <span class="badge info">Pending</span>
+          {% endif %}
+        </span>
+        <div class="progress-bar-container aid-seeker-progress-bar-container">
+          {% set width = '100%' if request.evaluation_status != 'Pending' else
+          '50%' %} {% set color = 'green' if request.evaluation_status ==
+          'Likely Truthful' else 'red' if request.evaluation_status == 'Likely
+          Untruthful' else 'orange' %}
+          <div
+            class="aid-seeker-progress-bar"
+            style="width: {{ width }}; background-color: {{ color }};"
+          ></div>
+        </div>
 
-</main> 
+        <!-- Display Evaluation Notes with Toggle -->
+        <div class="evaluation-notes">
+          <p id="snippet-{{ request.id }}">
+            {{ request.evaluation_notes[:100] }}...
+            <a
+              href="javascript:void(0);"
+              onclick="toggleFullText({{ request.id }})"
+              >Read More</a
+            >
+          </p>
+          <p id="full-text-{{ request.id }}" style="display: none">
+            {{ request.evaluation_notes }}
+            <a
+              href="javascript:void(0);"
+              onclick="toggleFullText({{ request.id }})"
+              >Show Less</a
+            >
+          </p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+</main>
 
 <script>
-    function deleteReport(reportId) {
-        fetch(`/delete_report/${reportId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ user_id: "{{ user.id }}" })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert('There was an error deleting the report.');
-                }
-            });
-    }
-
-    function toggleFullText(id) {
-        var snippet = document.getElementById("snippet-" + id);
-        var fullText = document.getElementById("full-text-" + id);
-        if (snippet.style.display === "none") {
-            snippet.style.display = "block";
-            fullText.style.display = "none";
+  function deleteReport(reportId) {
+    fetch(`/delete_report/${reportId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_id: "{{ user.id }}" }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          location.reload();
         } else {
-            snippet.style.display = "none";
-            fullText.style.display = "block";
+          alert("There was an error deleting the report.");
         }
+      });
+  }
+
+  function toggleFullText(id) {
+    var snippet = document.getElementById("snippet-" + id);
+    var fullText = document.getElementById("full-text-" + id);
+    if (snippet.style.display === "none") {
+      snippet.style.display = "block";
+      fullText.style.display = "none";
+    } else {
+      snippet.style.display = "none";
+      fullText.style.display = "block";
     }
+  }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        var progressBars = document.querySelectorAll('.progress-bar');
+  document.addEventListener("DOMContentLoaded", function () {
+    var progressBars = document.querySelectorAll(".progress-bar");
 
-        // Set initial width to 0% for animation
-        progressBars.forEach(function (progressBar) {
-            progressBar.style.width = '0%';
-        });
-
-        var observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        var observer = new IntersectionObserver(function (entries, observer) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    var progressBar = entry.target;
-                    var targetWidth = progressBar.dataset.targetWidth;
-
-                    // Set data-percentage for low values to adjust CSS
-                    if (parseInt(targetWidth) <= 30) {
-                        progressBar.parentNode.setAttribute('data-percentage', 'low');
-                    } else {
-                        progressBar.parentNode.removeAttribute('data-percentage');
-                    }
-
-                    setTimeout(function () {
-                        progressBar.style.width = targetWidth + '%';
-                    }, 1); // Adjust the delay if needed
-                    observer.unobserve(progressBar);
-                }
-            });
-        }, observerOptions);
-
-        progressBars.forEach(function (progressBar) {
-            // Observe each progress bar
-            observer.observe(progressBar);
-        });
+    // Set initial width to 0% for animation
+    progressBars.forEach(function (progressBar) {
+      progressBar.style.width = "0%";
     });
 
+    var observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1,
+    };
+
+    var observer = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var progressBar = entry.target;
+          var targetWidth = progressBar.dataset.targetWidth;
+
+          // Set data-percentage for low values to adjust CSS
+          if (parseInt(targetWidth) <= 30) {
+            progressBar.parentNode.setAttribute("data-percentage", "low");
+          } else {
+            progressBar.parentNode.removeAttribute("data-percentage");
+          }
+
+          setTimeout(function () {
+            progressBar.style.width = targetWidth + "%";
+          }, 1); // Adjust the delay if needed
+          observer.unobserve(progressBar);
+        }
+      });
+    }, observerOptions);
+
+    progressBars.forEach(function (progressBar) {
+      // Observe each progress bar
+      observer.observe(progressBar);
+    });
+  });
 </script>
 {% endblock %}

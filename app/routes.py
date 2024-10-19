@@ -13,12 +13,10 @@ import os
 from werkzeug.utils import secure_filename
 from itsdangerous import URLSafeTimedSerializer
 
-
+# routes.py
 
 def generate_verification_code(length=6):
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
-
-# routes.py
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -64,6 +62,7 @@ def login():
             verification_code = generate_verification_code()
             session['verification_code'] = verification_code
             session['username'] = user.username
+            session['email'] = user.email
 
             msg = Message('Your Verification Code', 
                           sender=current_app.config['MAIL_USERNAME'], 
@@ -71,7 +70,7 @@ def login():
             msg.body = f'Your verification code is {verification_code}'
             try:
                 mail.send(msg)
-                flash('Verification code sent to your email', 'info')
+                flash('A verification code has been sent to your email:<br><span class="email">{}</span>'.format(user.email), 'info')
                 next_url = request.args.get('next')
                 return redirect(url_for('verify', next=next_url))
             except Exception as e:
@@ -103,7 +102,7 @@ def forgot_password():
             msg.body = f'Please click the link to reset your password: {reset_url}'
             mail.send(msg)
             
-            flash('A password reset email has been sent.', 'info')
+            flash(f'A password reset email has been sent to: {email}', 'info')
             return redirect(url_for('login'))
         else:
             flash('No account found with that email address.', 'error')
@@ -139,6 +138,8 @@ def reset_password(token):
 def verify():
     if request.method == 'POST':
         code = request.form.get('code')
+        email = session.get('email')  # Assume you stored the user's email in the session when sending the verification code.
+        
         if code == session.get('verification_code'):
             access_token = create_access_token(identity=session['username'])
             session.pop('verification_code', None)
@@ -148,16 +149,21 @@ def verify():
             user = User.query.filter_by(username=session['username']).first()
             login_user(user)
 
-            # Check if user is a donor and hasn't added a credit card yet
+            # Redirect admin users to the admin dashboard
+            if user.is_admin():
+                return redirect(url_for('admin.admin_dashboard'))
+
             if user.role == 'donor' and not user.has_credit_card:
                 return redirect(url_for('add_credit_card'))
-
+            
+            # Redirect to the intended next URL if provided
             next_url = request.args.get('next')
             if next_url:
                 response = make_response(redirect(next_url))
             return response
 
-        flash('Invalid verification code', 'error')
+        flash(f'Invalid verification code. Please check your email: {email}', 'error')  # Flash message includes the email
+
     return render_template('verify.html')
 
 
@@ -234,6 +240,11 @@ def profile():
                 current_app.logger.error(f"Error fetching help requests: {e}", exc_info=True)
                 flash('Error loading help requests. Please try again later.', 'error')
                 return redirect(url_for('profile'))
+        
+        elif user.role == 'admin':
+            # Admin logic - you can redirect admins to the admin dashboard if needed
+            return redirect(url_for('admin_dashboard'))
+
         else:
             flash('Invalid user role.', 'error')
             return redirect(url_for('login'))
@@ -332,43 +343,8 @@ def get_aid_request_details(aid_request_id):
         'summary': aid_request.summary
     })
 
-
-"""@app.route('/profile/donor')
-def donor_profile():
-    if 'user_id' not in session:
-        flash('You must be logged in to access this page.', 'error')
-        return redirect(url_for('login'))
-    return render_template('donor_profile.html')"""
-
 @app.route('/donation', methods=['GET', 'POST'])
 def donation():
-    # Check if a POST request was made
-    if request.method == 'POST':
-        amount = request.form.get('amount')
-
-        # Validate the donation amount
-        if amount and float(amount) > 0:
-            if current_user.is_authenticated:
-                try:
-                    # Convert amount to float for proper handling
-                    donation_amount = float(amount)
-                    
-                    # Add a new donation record for general donations or category-specific
-                    new_donation = Donation(amount=donation_amount, user_id=current_user.id)
-                    db.session.add(new_donation)
-                    db.session.commit()
-                    flash('Thank you for your donation!', 'success')
-                    return redirect(url_for('profile'))
-                except Exception as e:
-                    db.session.rollback()
-                    current_app.logger.error(f"Error processing donation: {e}")
-                    flash('An error occurred while processing your donation. Please try again.', 'danger')
-            else:
-                flash('You need to log in to make a donation.', 'danger')
-                return redirect(url_for('login'))
-        else:
-            flash('Please enter a valid amount.', 'danger')
-
     # Fetch the prioritized categories for Israel first
     israel_categories = DonationCategory.query.filter(DonationCategory.title.in_(['Buildings', 'Army: Clothes, Food…', 'Companies'])).all()
 
@@ -458,23 +434,6 @@ def donation_detail(category_id):
             flash('Please enter a valid amount.', 'danger')
     
     return render_template('donation_detail.html', category=category)
-
-
-
-
-@app.route('/donation/<int:category_id>/make_donation', methods=['POST'])
-@login_required
-def make_donation(category_id):
-    amount = request.form.get('amount')
-    if amount:
-        new_donation = Donation(amount=amount, user_id=current_user.id, category_id=category_id)
-        db.session.add(new_donation)
-        db.session.commit()
-        flash('Thank you for your donation!', 'success')
-        return redirect(url_for('profile'))
-    else:
-        flash('Please enter a valid amount.', 'danger')
-        return redirect(url_for('donation_detail', category_id=category_id))
 
 @app.route('/donate_to_aid_request/<int:aid_request_id>', methods=['POST'])
 @login_required

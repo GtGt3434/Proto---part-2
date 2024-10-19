@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/admin.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <!-- Header Container -->
+    <div class="header-container">
+        <h1>Donation Categories</h1>
+        <div>
+            <a href="{{ url_for('admin.admin_dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+            <a href="{{ url_for('admin.admin_new_donation_category') }}" class="btn btn-primary">Add New Category</a>
+        </div>
+    </div>
+
+    <!-- Donation Categories Table -->
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image Keyword</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.title }}</td>
+                <td>{{ category.description }}</td>
+                <td>{{ category.image_keyword }}</td>
+                <td class="actions-column">
+                    <div class="button-group">
+                        <a href="{{ url_for('admin.admin_edit_donation_category', category_id=category.id) }}"
+                            class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a href="{{ url_for('admin.admin_confirm_delete_category', category_id=category.id) }}" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -62,7 +62,7 @@ def evaluate_assistance_request(full_name, age, gender, contact, assistance_type
 
     # Existing prompt creation and data setup
     prompt = (
-        f"Evaluate the credibility of the following assistance request:\n"
+        f"Evaluate the credibility of the following assistance request based on the provided information:\n"
         f"Full Name: {full_name}\n"
         f"Age: {age}\n"
         f"Gender: {gender}\n"
@@ -73,7 +73,8 @@ def evaluate_assistance_request(full_name, age, gender, contact, assistance_type
         f"Monthly Expenses: {expenses}\n"
         f"Assistance Amount Required: {assistance_amount}\n"
         f"Supporting Documents Text: {extracted_texts}\n"
-        "Is this request likely truthful or not based on the information provided?"
+        "Provide a clear verdict on whether this request is likely truthful or likely untruthful. "
+        "If you are confident in your evaluation, please use the exact phrases 'Likely Truthful' or 'Likely Untruthful' in your response. Make sure to elaborate on your reasoning."
     )
 
     # Log the prompt being sent
@@ -103,7 +104,7 @@ def evaluate_assistance_request(full_name, age, gender, contact, assistance_type
 
                 # Generate a summary if the request is likely truthful
                 summary_prompt = (
-                    f"Evaluate the credibility of the following assistance request based on the provided information. Consider the consistency of the details, the plausibility of the request, and any discrepancies. Provide a clear verdict on whether the request is likely truthful or untruthful. If you are confident in your evaluation, make sure to include the words 'Likely Truthful' or 'Likely Untruthful' in your response so that my algorithm can easily identify them:\n"
+                    f"Please summarize the assistance request using the following information:\n"
                     f"Full Name: {full_name}\n"
                     f"Age: {age}\n"
                     f"Gender: {gender}\n"
@@ -112,6 +113,7 @@ def evaluate_assistance_request(full_name, age, gender, contact, assistance_type
                     f"Monthly Income: {income}\n"
                     f"Monthly Expenses: {expenses}\n"
                     f"Assistance Amount Required: {assistance_amount}\n"
+                    "Since the request has been evaluated as likely truthful, provide a concise summary highlighting the key aspects of the aid seeker's situation."
                 )
 
                 summary_data = {

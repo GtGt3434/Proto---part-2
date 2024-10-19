@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/admin_dashboard.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="admin-header">
+        <div class="header-content">
+            <i class="fa fa-tachometer-alt fa-lg header-icon"></i>
+            <h1>Admin Dashboard</h1>
+        </div>
+    </div>
+    <div class="dashboard-welcome">
+        <div class="welcome-card">
+            <p>Welcome, {{ current_user.username }}!</p>
+        </div>
+    </div>
+    <div class="dashboard-links admin-nav">
+        <div class="dashboard-card-container">
+            <div class="dashboard-card">
+                <a href="{{ url_for('admin.admin_donation_categories') }}">
+                    <i class="fa fa-hand-holding-heart"></i>
+                    <h3>Manage Donation Categories</h3>
+                </a>
+            </div>
+            <div class="dashboard-card">
+                <a href="{{ url_for('admin.admin_volunteer_opportunities') }}">
+                    <i class="fa fa-users"></i>
+                    <h3>Manage Volunteer Opportunities</h3>
+                </a>
+            </div>
+            <div class="dashboard-card">
+                <a href="{{ url_for('admin.admin_help_requests') }}">
+                    <i class="fa fa-hands-helping"></i>
+                    <h3>Manage Help Requests</h3>
+                </a>
+            </div>
+            <div class="dashboard-card">
+                <a href="{{ url_for('admin.admin_users') }}">
+                    <i class="fa fa-user-cog"></i>
+                    <h3>Manage Users</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script>
+    // Animate the admin header on page load
+    window.onload = function () {
+        gsap.from(".admin-header", {
+            duration: 1.5,
+            x: -200,
+            opacity: 0,
+            ease: "power3.out"
+        });
+        gsap.from(".dashboard-card", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+        gsap.from(".welcome-card", {
+            duration: 1.5,
+            scale: 0.8,
+            opacity: 0,
+            ease: "back.out(1.7)"
+        });
+    }
+
+    // Add hover animation for dashboard cards
+    const cards = document.querySelectorAll('.dashboard-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, { scale: 1.05, duration: 0.3, ease: "power1.out" });
+        });
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, { scale: 1, duration: 0.3, ease: "power1.in" });
+        });
+    });
+</script>
+{% endblock %}

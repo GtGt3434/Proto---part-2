@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+    <!-- Header Container -->
+    <div class="header-container">
+        <h1>Add New Volunteer Opportunity</h1>
+        <a href="{{ url_for('admin.admin_volunteer_opportunities') }}" class="btn btn-primary">Back to Volunteer
+            Opportunities</a>
+    </div>
+
+    <!-- Form -->
+    <form method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" id="description" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" name="location" id="location" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="skills_keywords">Skills Keywords</label>
+            <input type="text" name="skills_keywords" id="skills_keywords" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="image_url">Image URL</label>
+            <input type="text" name="image_url" id="image_url" class="form-control">
+        </div>
+        <div class="button-group">
+            <button type="submit" class="btn btn-success">Create Opportunity</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

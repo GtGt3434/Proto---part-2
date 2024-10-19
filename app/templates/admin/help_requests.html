@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="content-container">
+  <!-- Header Container -->
+  <div class="header-container">
+    <h1>Help Requests</h1>
+    <a href="{{ url_for('admin.admin_dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+  </div>
+
+  <!-- Help Requests Table -->
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Assistance Type</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for request in help_requests %}
+      <tr>
+        <td>{{ request.full_name }}</td>
+        <td>{{ request.assistance_type }}</td>
+        <td>{{ request.description }}</td>
+        <td>{{ request.evaluation_status }}</td>
+        <td class="actions-column">
+          {% if request.evaluation_status != 'Approved' %}
+          <form action="{{ url_for('admin.admin_approve_help_request', request_id=request.id) }}" method="post"
+            style="display: inline;">
+            <button type="submit" class="btn btn-success btn-sm">Approve</button>
+          </form>
+          {% endif %}
+          {% if request.evaluation_status != 'Rejected' %}
+          <form action="{{ url_for('admin.admin_reject_help_request', request_id=request.id) }}" method="post"
+            style="display: inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

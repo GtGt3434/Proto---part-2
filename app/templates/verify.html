@@ -11,11 +11,12 @@
     {% if messages %}
     <ul class="flashes">
         {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
+        <li class="{{ category }}">{% autoescape false %}{{ message }}{% endautoescape %}</li> <!-- Allow HTML rendering -->
         {% endfor %}
     </ul>
     {% endif %}
     {% endwith %}
+
     <form method="POST" action="{{ url_for('verify') }}">
         <input type="text" name="code" placeholder="Enter Verification Code" required>
         <button type="submit">Verify</button>
